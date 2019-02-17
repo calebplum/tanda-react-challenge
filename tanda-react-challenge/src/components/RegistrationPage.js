@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-export class LoginPage extends Component {
+export class RegistrationPage extends Component {
     render() {
         return (
-            <div id="page-wrap">
-                <h1>Login Page</h1>
-                <div className="login-form">
+            <div className="page-wrap">
+                <h1>Registration Page</h1>
+                <div className="registration-form">
                     <form>
                         <label>
                             Username:
