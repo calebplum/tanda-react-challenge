@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 export class RegistrationPage extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -16,7 +17,8 @@ export class RegistrationPage extends Component {
 
     signUpUser() {
         const { cookies } = this.props;
-        console.log(this.state);
+        console.log(this.state);    // debug aid
+
         axios({
             method: 'post',
             url: '/auth/signup',
