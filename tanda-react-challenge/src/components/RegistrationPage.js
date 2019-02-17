@@ -15,6 +15,7 @@ export class RegistrationPage extends Component {
     }
 
     signUpUser() {
+        const { cookies } = this.props;
         console.log(this.state);
         axios({
             method: 'post',
@@ -24,6 +25,7 @@ export class RegistrationPage extends Component {
         })
             .then(function (response) {
                 console.log(response);
+                cookies.set('session-id', response.data.sessionId, { path: '/' });
             })
             .catch(function (response) {
                 console.log(response);
