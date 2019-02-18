@@ -5,6 +5,7 @@ import { withCookies } from 'react-cookie';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import { LoginPage } from './components/LoginPage.js';
 import { RegistrationPage } from './components/RegistrationPage.js';
+import { OrgsPage } from './components/OrgsPage';
 
 class App extends Component {
   render() {
@@ -16,10 +17,14 @@ class App extends Component {
               <Route
                 exact path="/"
                 render={() => (<LoginPage cookies={this.props.cookies}/>)}
-                />
+              />
               <Route
                   path="/register"
                   render={() => (<RegistrationPage cookies={this.props.cookies}/>)}
+              />
+              <Route
+                path="/organisations"
+                render={() => (<OrgsPage cookies={this.props.cookies}/>)}
               />
             </Switch>
         </div>

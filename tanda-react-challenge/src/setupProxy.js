@@ -3,4 +3,7 @@ module.exports = function(app) {
     app.use(proxy('/auth/',
         { target: 'http://localhost:3000/' }
         ));
+    app.use(proxy('/users/',
+        { target: 'http://localhost:3000/' }
+    ));
 };

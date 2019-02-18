@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { Redirect } from 'react-router';
 
 export class LoginPage extends Component {
 
@@ -17,20 +17,16 @@ export class LoginPage extends Component {
         const { cookies } = this.props;
         console.log(this.state);    // debugging aid
 
-        axios({
+        fetch('/auth/login', {
             method: 'post',
-            url: '/auth/login',
-            data: this.state,
-            config: { headers: {'Content-Type': 'application/json'} }
-        })
-            .then(function(response) {
-                console.log(response);
-                cookies.set('session-id', response.data.sessionId, { path: '/' });
-            })
-            .catch(function (response) {
-                console.log(response);
-            })
-
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(this.state)
+        }).then((res) => res.json())
+            .then((data) => {
+                console.log(data);  // debugging aid
+                cookies.set('session-id', data.sessionId, { path: '/' });
+                return <Redirect to='/organisations' />;
+            }).catch((err) => console.log(err));
     }
 
     render() {

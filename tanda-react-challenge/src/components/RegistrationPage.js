@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 export class RegistrationPage extends Component {
 
@@ -19,19 +18,16 @@ export class RegistrationPage extends Component {
         const { cookies } = this.props;
         console.log(this.state);    // debug aid
 
-        axios({
+        fetch('/auth/signup',{
             method: 'post',
-            url: '/auth/signup',
-            data: this.state,
-            config: { headers: {'Content-Type': 'application/json'} }
-        })
-            .then(function (response) {
-                console.log(response);
-                cookies.set('session-id', response.data.sessionId, { path: '/' });
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(this.state)
+        }).then((res) => res.json())
+            .then((data) => {
+                console.log(data);   // debugging aid
+                cookies.set('session-id', data.sessionId, { path: '/' });
             })
-            .catch(function (response) {
-                console.log(response);
-            });
+            .catch((err) => console.log(err));
     }
 
     render() {
