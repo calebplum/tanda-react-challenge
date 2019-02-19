@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import { LoginPage } from './components/LoginPage.js';
 import { RegistrationPage } from './components/RegistrationPage.js';
 import { OrgsPage } from './components/OrgsPage';
+import { EditOrg } from './components/EditOrg';
 
 class App extends Component {
   render() {
@@ -13,20 +14,26 @@ class App extends Component {
     return (
         <div>
             Session-id: {cookies.get('session-id')}
-            <Switch>
-              <Route
-                exact path="/"
-                render={() => (<LoginPage cookies={this.props.cookies}/>)}
-              />
-              <Route
-                  path="/register"
-                  render={() => (<RegistrationPage cookies={this.props.cookies}/>)}
-              />
-              <Route
-                path="/organisations"
-                render={() => (<OrgsPage cookies={this.props.cookies}/>)}
-              />
-            </Switch>
+            <div id="component-container">
+                <Switch>
+                  <Route
+                    exact path="/"
+                    render={() => (<LoginPage cookies={this.props.cookies}/>)}
+                  />
+                  <Route
+                      path="/register"
+                      render={() => (<RegistrationPage cookies={this.props.cookies}/>)}
+                  />
+                  <Route
+                    path="/orgs"
+                    render={() => (<OrgsPage cookies={this.props.cookies}/>)}
+                  />
+                  <Route  // Test
+                    path="/editorg/:orgId"
+                    render={(props) => (<EditOrg cookies={this.props.cookies} urlParams={props}/>)}
+                  />
+                </Switch>
+            </div>
         </div>
     );
   }

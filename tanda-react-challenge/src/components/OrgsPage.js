@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { NoOrgs } from './NoOrgs.js';
+import { CheckLoggedIn } from './CheckLoggedIn.js'
 
 export class OrgsPage extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            name: ''
+            name: '',
+            memberOrganisation: null
         };
     }
 
@@ -25,13 +27,16 @@ export class OrgsPage extends Component {
             }).then((res) => res.json())
                 .then((data) => {
                     console.log(data);
-                    this.setState({name: data.name});
+                    this.setState({
+                        name: data.name,
+                        memberOrganisation: data.organisationId
+                    });
                 }).catch((err) => {
                     console.log(err);
             });
         } else {
             console.log("No session-id found (user not logged in");
-            window.alert('Please login');
+            // window.alert('Please login');
             //TODO - redirect to login page
         }
     }
@@ -39,8 +44,9 @@ export class OrgsPage extends Component {
     render() {
         return (
             <div id="page-wrap">
+                <CheckLoggedIn cookies={this.props.cookies}/>
                 Logged in as {this.state.name} <span id="logout">Logout</span>
-                <NoOrgs />
+                <NoOrgs cookies={this.props.cookies}/>
 
             </div>
         )

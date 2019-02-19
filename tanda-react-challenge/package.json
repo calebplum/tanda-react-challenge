@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "http-proxy-middleware": "^0.19.1",
+    "query-string": "^6.2.0",
     "react": "^16.8.2",
     "react-cookie": "^3.0.8",
     "react-dom": "^16.8.2",

@@ -25,7 +25,7 @@ export class LoginPage extends Component {
             .then((data) => {
                 console.log(data);  // debugging aid
                 cookies.set('session-id', data.sessionId, { path: '/' });
-                return <Redirect to='/organisations' />;
+                return <Redirect to='/orgs' />;
             }).catch((err) => console.log(err));
     }
 
