@@ -41,7 +41,6 @@ class App extends Component {
     }
 
     changePage(...params) {
-        console.log("Changepage called to "+params[0]);
         switch (params[0]) {
             case "/":
             case "/register":

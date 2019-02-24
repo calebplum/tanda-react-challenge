@@ -27,7 +27,6 @@ export class EditOrg extends Component {
                 'hourlyRate': this.state.orgRate
             })
         }).then((res) => {
-            console.log(res);
             if (res.ok) {
                 window.alert('Update successful');
                 this.props.changePage('/orgs', this.props.userData);

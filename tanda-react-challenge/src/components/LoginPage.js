@@ -28,7 +28,6 @@ export class LoginPage extends Component {
 
                 this.getUserOrg(userData.sessionId)
                     .then(orgData => {
-                        // console.log("Got org data: " + orgData.id)
                         let allUserData = {
                             userData,
                             orgData

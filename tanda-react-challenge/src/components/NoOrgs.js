@@ -28,7 +28,6 @@ export class NoOrgs extends Component {
                 }
             }).then((res) => res.json())
                 .then((data) => {
-                    console.log(data);
                     this.setState({
                         organisations: data
                     });
@@ -96,14 +95,12 @@ export class NoOrgs extends Component {
             })
         })
             .then((res) => {
-              console.log('res', res);
             if (res.status === 200) {
                 window.alert('Successfully created and joined organisation');
                 this.props.updateUserOrganisationId(res.json().id)
             }
             else {
-                window.alert('Error creating/joining organisation ')
-                console.log(res.message);
+                window.alert('Error creating/joining organisation ');
             }
         })
     }

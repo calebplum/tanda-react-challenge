@@ -45,7 +45,6 @@ export class CurrentOrg extends Component {
                 'Content-Type': 'application/json'
             }
         }).then((res) => {
-            console.log(res);
             this.setState({
                 orgData: ""
             });
