@@ -30,6 +30,7 @@ export class CurrentOrg extends Component {
                 // console.log(data);
                 // console.log('****id ', this.props.orgData.organisationId);
                 var usersOrg = (data.find(x => (x.id === this.props.orgData.organisationId)));  // Find list index for the user's current org
+                this.setState({usersOrgId: this.props.orgData.organisationId});
                 this.setState({usersOrgName: usersOrg.name});
                 this.setState({usersOrgHourlyRate: usersOrg.hourlyRate});
                 // console.log('UsersOrg Name: ' + usersOrg.name);
@@ -80,6 +81,8 @@ export class CurrentOrg extends Component {
 
 
     render() {
+        // const editOrgData = {orgId: this.state.usersOrgId, orgName: this.state.usersOrgName, orgRate: this.state.usersOrgHourlyRate};
+
         return(
             <div id="page-wrap">
                 {/*{console.log(this.props.orgData)}*/}
@@ -88,8 +91,7 @@ export class CurrentOrg extends Component {
                 {/*{console.log(this.props.orgData)}*/}
                 {/*<button onClick={this.props.changePage('/viewShifts')}>View Shifts</button>*/}
                 <button onClick={() => this.props.changePage('/viewShifts', this.state.usersOrgName, this.state.usersOrgHourlyRate)}>View Shifts</button>
-                | Edit |
-                <button onClick={() => this.props.changePage('/editOrg', this.state.usersOrgName, this.state.usersOrgHourlyRate)}>Edit</button>
+                <button onClick={() => this.props.changePage('/editOrg', {orgId: this.state.usersOrgId, orgName: this.state.usersOrgName, orgRate: this.state.usersOrgHourlyRate})}>Edit</button>
                 {/*<button onClick={() => this.props.leaveOrg()}>Leave Organisation</button>*/}
                 <button onClick={() => this.leaveOrg()}>Leave Organisation</button>
             </div>
