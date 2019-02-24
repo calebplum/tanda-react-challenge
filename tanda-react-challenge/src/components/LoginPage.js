@@ -15,6 +15,14 @@ export class LoginPage extends Component {
     }
 
     loginUser() {
+
+        if (
+            this.state.email === '' ||
+            this.state.password === ''
+        ) {
+            return (window.alert('Missing fields'));
+        }
+
         const { cookies } = this.props;
         this.executeLogin()
             .then(userData => {
@@ -29,9 +37,9 @@ export class LoginPage extends Component {
                         }
                         this.props.changePage("/orgs", allUserData);
                     })
-                    .catch(e => console.log(e))
+                    .catch(error => console.log(error))
             })
-            .catch(e => console.log());
+            .catch(error => console.log(error));
     }
 
     executeLogin() {
@@ -105,8 +113,11 @@ export class LoginPage extends Component {
                     <input type="password" id="password" name="password" value={this.state.password}
                            onChange={(event) =>
                                this.setState({password: event.target.value})}/>
-                   <br />
+                    <br />
                     <button id="submit" onClick={this.loginUser}>Login</button>
+                    <br />
+                    <br />
+                    <button onClick={() => this.props.changePage('/register')}>Register</button>
 
                 </div>
             </div>

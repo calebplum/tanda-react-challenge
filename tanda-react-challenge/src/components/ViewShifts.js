@@ -15,10 +15,13 @@ export class ViewShifts extends Component {
         this.componentWillMount = this.componentWillMount.bind(this);
         this.mapShifts = this.mapShifts.bind(this);
         this.appendToExistingShifts = this.appendToExistingShifts.bind(this);
+        this.fetchUsers = this.fetchUsers.bind(this);
     }
 
 
     componentWillMount() {
+
+        this.fetchUsers();
 
         const { cookies } = this.props;
 
@@ -30,7 +33,7 @@ export class ViewShifts extends Component {
             }
         }).then((res) => res.json())
             .then((data) => {
-                console.log('api shifts', data);
+                // console.log('api shifts', data);
                 this.setState({
                     existingShifts: data
                 })
@@ -40,10 +43,26 @@ export class ViewShifts extends Component {
             }).catch((err) => {
             console.log(err);
         });
+
+        // Fetch the list of users' names
+        // fetch('/users', {
+        //     method: 'get',
+        //     headers: {
+        //         'Authorization': cookies.get('session-id'),
+        //         'Content-Type': 'application/json'
+        //     }
+        // }).then((res) => res.json())
+        //     .then((data) => {
+        //         console.log(data);
+        //         this.setState({
+        //             userList: data
+        //         })
+        //     }).catch(error => console.log(error))
+
     }
 
     appendToExistingShifts(shiftStart, shiftFinish, breakLength) {
-        console.log('from appendToExistingShifts', 'shiftFinish', shiftFinish); //debug
+        // console.log('from appendToExistingShifts', 'shiftFinish', shiftFinish); //debug
         const newShiftObject = {
             "id": 2,
             "userId": 2,
@@ -57,11 +76,29 @@ export class ViewShifts extends Component {
         this.setState({existingShifts: newArray});
     }
 
+    fetchUsers() {
+
+        const { cookies } = this.props;
+
+        fetch('/users', {
+            method: 'get',
+            headers: {
+                'Authorization': cookies.get('session-id'),
+                'Content-Type': 'application/json'
+            }
+        }).then((res) => res.json())
+            .then((data) => {
+                // console.log(data);
+                this.setState({
+                    userList: data
+                })
+            }).catch(error => console.log(error))
+
+    }
+
     mapShifts() {
 
         var self = this;
-
-        console.log('shifts from state', this.state.existingShifts);
 
         const shifts = Array.from(this.state.existingShifts).map(function(shift) {
 
@@ -110,11 +147,19 @@ export class ViewShifts extends Component {
             // Calculate the shift cost
             var shiftCost = (shiftDurationHours * self.props.usersOrgHourlyRate).toFixed(2);
 
+            // Fetch the user's name from the userList
+            // console.log(self.state.userList);
+            // console.log(shift.userId);
+            // var userList = self.state.userList;
+            // console.log(userList)
+            // var user = (self.state.userList.find(x => (x.id === shift.userId)));
+            // console.log(user.name);
 
             return (
                 <tr>
                     <td id='employee-name'>
                         {shift.userId}
+                        {/*{user.name}*/}
                     </td>
                     <td id='shift-date'>
                         {shiftStartDateStr}
@@ -137,7 +182,7 @@ export class ViewShifts extends Component {
                 </tr>
             )
         });
-        console.log('shifts',shifts);
+        // console.log('shifts',shifts);
         return shifts;
 
     }
@@ -150,15 +195,25 @@ export class ViewShifts extends Component {
             this.state.newShiftStartTime === '' ||
             this.state.newShiftFinishTime === '')
         {
-            return (window.alert('Invalid data entered'));
+            return (window.alert('Missing fields'));
+        }
+        else if (this.state.newShiftDate.indexOf('/') === -1) {
+            return (window.alert('Invalid data entered: Dates must be in DD/MM/YYYY format'));
+        }
+        else if (
+            (this.state.newShiftStartTime.indexOf(':') === -1) ||
+            (this.state.newShiftFinishTime.indexOf(':') === -1)
+        ) {
+            return (window.alert('Invalid data entered: Shift times must be in HH:MM format'));
         }
 
-        console.log(
-            'Shift Date' + this.state.newShiftDate +
-            ' Start Time' + this.state.newShiftStartTime +
-            ' Finish Time' + this.state.newShiftFinishTime +
-            ' Break Length' + this.state.newShiftBreakLength
-        );
+
+        // console.log(
+        //     'Shift Date' + this.state.newShiftDate +
+        //     ' Start Time' + this.state.newShiftStartTime +
+        //     ' Finish Time' + this.state.newShiftFinishTime +
+        //     ' Break Length' + this.state.newShiftBreakLength
+        // );
 
         // Fetch and format the start date of the new shift (DD/MM/YYYY)
         var newShiftDateArray = this.state.newShiftDate.split('/');
@@ -205,7 +260,7 @@ export class ViewShifts extends Component {
             })
         }).then((res) => {
             // console.log(res);
-            console.log('from api call: ', newShiftStartDatetime.toString(), newShiftFinishDateTime.toString())
+            // console.log('from api call: ', newShiftStartDatetime.toString(), newShiftFinishDateTime.toString());
             this.appendToExistingShifts(newShiftStartDatetime.toString(), newShiftFinishDateTime.toString(), newShiftBreakLength);
         })
 

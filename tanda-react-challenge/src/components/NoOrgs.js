@@ -63,7 +63,7 @@ export class NoOrgs extends Component {
 
     joinOrg(orgId) {
         // console.log('joinOrg() called');
-        console.log(this.props.orgData);
+        // console.log(this.props.orgData);
         const {cookies} = this.props;
         // if(cookies.get('session-id')) {
             fetch('/organisations/join', {
@@ -77,9 +77,9 @@ export class NoOrgs extends Component {
                 })
             }).then((res) => res.json())
                 .then((data) => {
-                    console.log(data)
-                    console.log('hello');
-                    console.log(this.props.userData);
+                    // console.log(data)
+                    // console.log('hello');
+                    // console.log(this.props.userData);
                     // this.props.changePage('/orgs', this.props.userData)
                     this.props.updateUserOrganisationId(orgId); // Trigger the parent {OrgsPage} component to refresh
                     // this.props.orgData.id = 3;

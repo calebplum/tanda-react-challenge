@@ -85,10 +85,11 @@ export class OrgsPage extends Component {
             <div id="page-wrap">
                 {/*{this.fetchOrgsList()}*/}
                 [OrgsPage]
-                <CheckLoggedIn cookies={this.props.cookies}/>
-                Logged in as {this.state.userData.name} <span id="logout">Logout</span>
+                {/*<CheckLoggedIn cookies={this.props.cookies}/>*/}
+                {/*{console.log(this.props.userData.orgData.name)}*/}
+                {/*Logged in as {this.props.userData.orgData.name} <span id="logout">Logout</span>*/}
 
-                {console.log(this.state.orgData)}
+                {/*{console.log(this.state.orgData)}*/}
                 {this.state.orgData.organisationId === null
                     ?   <NoOrgs cookies={this.props.cookies} userData={this.userData} changePage={this.props.changePage} updateUserOrganisationId={this.updateUserOrganisationId}/>
                         : <CurrentOrg cookies={this.props.cookies} leaveOrg={this.leaveOrg} orgData={this.state.orgData} changePage={this.props.changePage} updateUserOrganisationId={this.updateUserOrganisationId}/>}

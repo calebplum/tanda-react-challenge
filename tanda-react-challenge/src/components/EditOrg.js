@@ -33,7 +33,7 @@ export class EditOrg extends Component {
                 // 'hourlyRate': JSON.stringify(this.state.orgRate)
             })
         }).then((res) => {
-            console.log(res);
+            // console.log(res);
             if (res.ok) {
                 window.alert('Update successful');
                 this.props.changePage('/orgs', this.props.userData);

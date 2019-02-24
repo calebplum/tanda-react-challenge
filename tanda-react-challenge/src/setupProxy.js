@@ -15,4 +15,7 @@ module.exports = function(app) {
     app.use(proxy('/organisations/',
         { target: 'http://localhost:3000/' }
     ));
+    app.use(proxy('/users',
+        { target: 'http://localhost:3000/' }
+    ));
 };

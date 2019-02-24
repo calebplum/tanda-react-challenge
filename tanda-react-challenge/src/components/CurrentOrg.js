@@ -28,7 +28,7 @@ export class CurrentOrg extends Component {
         }).then((res) => res.json())
             .then((data) => {
                 // console.log(data);
-                console.log('****id ', this.props.orgData.organisationId);
+                // console.log('****id ', this.props.orgData.organisationId);
                 var usersOrg = (data.find(x => (x.id === this.props.orgData.organisationId)));  // Find list index for the user's current org
                 this.setState({usersOrgName: usersOrg.name});
                 this.setState({usersOrgHourlyRate: usersOrg.hourlyRate});
@@ -82,7 +82,7 @@ export class CurrentOrg extends Component {
     render() {
         return(
             <div id="page-wrap">
-                {console.log(this.props.orgData)}
+                {/*{console.log(this.props.orgData)}*/}
                 [CurrentOrg]
                 <h1>{this.state.usersOrgName}</h1>
                 {/*{console.log(this.props.orgData)}*/}

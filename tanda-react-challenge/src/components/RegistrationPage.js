@@ -15,6 +15,23 @@ export class RegistrationPage extends Component {
     }
 
     signUpUser() {
+
+        // Input data validation
+        if (
+            this.state.name === '' ||
+            this.state.email === '' ||
+            this.state.password === '' ||
+            this.state.passwordConfirmation === ''
+        ) {
+            return (window.alert('Missing fields'));
+        }
+        else if (this.state.password !== this.state.passwordConfirmation) {
+            return (window.alert('Password and Password Confirmation mismatch'));
+        }
+        else if ((this.state.password).length < 6) {
+            return (window.alert('Password must be greater than 6 characters'));
+        }
+
         const { cookies } = this.props;
         // console.log(this.state);    // debug aid
 
@@ -64,6 +81,8 @@ export class RegistrationPage extends Component {
                                    this.setState({passwordConfirmation: event.target.value})}/>
                         <br />
                         <button id="submit" onClick={this.signUpUser}>Sign Up</button>
+                        <br />
+                        <button onClick={() => this.props.changePage('/')}>Cancel</button>
 
                 </div>
             </div>
