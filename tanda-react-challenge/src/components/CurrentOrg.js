@@ -89,6 +89,7 @@ export class CurrentOrg extends Component {
                 {/*<button onClick={this.props.changePage('/viewShifts')}>View Shifts</button>*/}
                 <button onClick={() => this.props.changePage('/viewShifts', this.state.usersOrgName, this.state.usersOrgHourlyRate)}>View Shifts</button>
                 | Edit |
+                <button onClick={() => this.props.changePage('/editOrg', this.state.usersOrgName, this.state.usersOrgHourlyRate)}>Edit</button>
                 {/*<button onClick={() => this.props.leaveOrg()}>Leave Organisation</button>*/}
                 <button onClick={() => this.leaveOrg()}>Leave Organisation</button>
             </div>

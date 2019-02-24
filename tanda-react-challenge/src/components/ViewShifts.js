@@ -20,7 +20,7 @@ export class ViewShifts extends Component {
 
 
     componentWillMount() {
-
+        // console.log('props userdate', this.props.userData.orgData.id);
         this.fetchUsers();
 
         const { cookies } = this.props;
@@ -65,7 +65,7 @@ export class ViewShifts extends Component {
         // console.log('from appendToExistingShifts', 'shiftFinish', shiftFinish); //debug
         const newShiftObject = {
             "id": 2,
-            "userId": 2,
+            "userId": this.props.userData.orgData.id,
             "start": shiftStart,
             "finish": shiftFinish,
             "breakLength": breakLength
@@ -253,7 +253,7 @@ export class ViewShifts extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                'userId': 2,
+                'userId': this.props.userData.orgData.id,
                 'start': newShiftStartDatetime.toString(),
                 'finish': newShiftFinishDateTime.toString(),
                 'breakLength': newShiftBreakLength
