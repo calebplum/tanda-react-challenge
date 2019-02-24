@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 
 export class LoginPage extends Component {
 
@@ -11,7 +10,6 @@ export class LoginPage extends Component {
         };
 
         this.loginUser = this.loginUser.bind(this);
-        // this.getUsersOrg = this.getUsersOrg.bind(this);
     }
 
     loginUser() {
@@ -34,7 +32,7 @@ export class LoginPage extends Component {
                         let allUserData = {
                             userData,
                             orgData
-                        }
+                        };
                         this.props.changePage("/orgs", allUserData);
                     })
                     .catch(error => console.log(error))
@@ -55,12 +53,6 @@ export class LoginPage extends Component {
                 }
                 resolve(response.json())
             }).catch((err) => reject(err));
-                // .then((res) => res.json())
-                // .then((data) => {
-                //     console.log(data)
-                //     resolve(data);
-                //
-                // }).catch((err) => reject(err));
         })
     }
 
@@ -80,27 +72,6 @@ export class LoginPage extends Component {
                 }).catch((err) => reject(err));
         })
     }
-
-    // getUsersOrg(sessionId) {
-    //     return new Promise((resolve,reject) => {
-    //
-    //         fetch('/users/me', {
-    //             method: 'get',
-    //             headers: {
-    //                 'Authorization': sessionId,
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         }).then((res) => res.json())
-    //             .then((data) => {
-    //                 console.log('users org data');
-    //                 console.log(data);
-    //                 resolve(data);
-    //
-    //             }).catch((err) => reject(err));
-    //     })
-    // }
-
-
 
     render() {
         return (

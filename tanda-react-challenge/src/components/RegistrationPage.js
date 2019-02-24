@@ -33,7 +33,6 @@ export class RegistrationPage extends Component {
         }
 
         const { cookies } = this.props;
-        // console.log(this.state);    // debug aid
 
         fetch('/auth/signup',{
             method: 'post',
@@ -42,6 +41,8 @@ export class RegistrationPage extends Component {
         }).then((res) => res.json())
             .then((data) => {
                 cookies.set('session-id', data.sessionId, { path: '/' });
+                window.alert('Registration Successful! Please login');
+                this.props.changePage('/');
             })
             .catch((err) => console.log(err));
     }
@@ -51,7 +52,6 @@ export class RegistrationPage extends Component {
             <div className="page-wrap">
                 <h1>Registration Page</h1>
                 <div className="registration-form">
-
                         <label>
                             Name:
                         </label>
@@ -83,7 +83,6 @@ export class RegistrationPage extends Component {
                         <button id="submit" onClick={this.signUpUser}>Sign Up</button>
                         <br />
                         <button onClick={() => this.props.changePage('/')}>Cancel</button>
-
                 </div>
             </div>
         );

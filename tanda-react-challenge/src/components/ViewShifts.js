@@ -15,13 +15,9 @@ export class ViewShifts extends Component {
         this.componentWillMount = this.componentWillMount.bind(this);
         this.mapShifts = this.mapShifts.bind(this);
         this.appendToExistingShifts = this.appendToExistingShifts.bind(this);
-        this.fetchUsers = this.fetchUsers.bind(this);
     }
 
-
     componentWillMount() {
-        // console.log('props userdate', this.props.userData.orgData.id);
-        this.fetchUsers();
 
         const { cookies } = this.props;
 
@@ -33,36 +29,15 @@ export class ViewShifts extends Component {
             }
         }).then((res) => res.json())
             .then((data) => {
-                // console.log('api shifts', data);
                 this.setState({
                     existingShifts: data
                 })
-                // const shifts = Array.from(data).map(start => <td>{start}</td>);
-
-                // console.log('shifts', shifts)
             }).catch((err) => {
             console.log(err);
         });
-
-        // Fetch the list of users' names
-        // fetch('/users', {
-        //     method: 'get',
-        //     headers: {
-        //         'Authorization': cookies.get('session-id'),
-        //         'Content-Type': 'application/json'
-        //     }
-        // }).then((res) => res.json())
-        //     .then((data) => {
-        //         console.log(data);
-        //         this.setState({
-        //             userList: data
-        //         })
-        //     }).catch(error => console.log(error))
-
     }
 
     appendToExistingShifts(shiftStart, shiftFinish, breakLength) {
-        // console.log('from appendToExistingShifts', 'shiftFinish', shiftFinish); //debug
         const newShiftObject = {
             "id": 2,
             "userId": this.props.userData.orgData.id,
@@ -72,28 +47,7 @@ export class ViewShifts extends Component {
         };
         var newArray = this.state.existingShifts;
         newArray.push(newShiftObject);
-
         this.setState({existingShifts: newArray});
-    }
-
-    fetchUsers() {
-
-        const { cookies } = this.props;
-
-        fetch('/users', {
-            method: 'get',
-            headers: {
-                'Authorization': cookies.get('session-id'),
-                'Content-Type': 'application/json'
-            }
-        }).then((res) => res.json())
-            .then((data) => {
-                // console.log(data);
-                this.setState({
-                    userList: data
-                })
-            }).catch(error => console.log(error))
-
     }
 
     mapShifts() {
@@ -147,19 +101,10 @@ export class ViewShifts extends Component {
             // Calculate the shift cost
             var shiftCost = (shiftDurationHours * self.props.usersOrgHourlyRate).toFixed(2);
 
-            // Fetch the user's name from the userList
-            // console.log(self.state.userList);
-            // console.log(shift.userId);
-            // var userList = self.state.userList;
-            // console.log(userList)
-            // var user = (self.state.userList.find(x => (x.id === shift.userId)));
-            // console.log(user.name);
-
             return (
                 <tr>
                     <td id='employee-name'>
                         {shift.userId}
-                        {/*{user.name}*/}
                     </td>
                     <td id='shift-date'>
                         {shiftStartDateStr}
@@ -182,14 +127,12 @@ export class ViewShifts extends Component {
                 </tr>
             )
         });
-        // console.log('shifts',shifts);
         return shifts;
-
     }
 
     createShift() {
 
-        // check for blank fields, return error alert and end function early if any blank fields are found
+        // check for blank fields, return error alert and end function early if any are found
         if (
             this.state.newShiftDate === '' ||
             this.state.newShiftStartTime === '' ||
@@ -206,14 +149,6 @@ export class ViewShifts extends Component {
         ) {
             return (window.alert('Invalid data entered: Shift times must be in HH:MM format'));
         }
-
-
-        // console.log(
-        //     'Shift Date' + this.state.newShiftDate +
-        //     ' Start Time' + this.state.newShiftStartTime +
-        //     ' Finish Time' + this.state.newShiftFinishTime +
-        //     ' Break Length' + this.state.newShiftBreakLength
-        // );
 
         // Fetch and format the start date of the new shift (DD/MM/YYYY)
         var newShiftDateArray = this.state.newShiftDate.split('/');
@@ -259,8 +194,6 @@ export class ViewShifts extends Component {
                 'breakLength': newShiftBreakLength
             })
         }).then((res) => {
-            // console.log(res);
-            // console.log('from api call: ', newShiftStartDatetime.toString(), newShiftFinishDateTime.toString());
             this.appendToExistingShifts(newShiftStartDatetime.toString(), newShiftFinishDateTime.toString(), newShiftBreakLength);
         })
 
@@ -269,23 +202,19 @@ export class ViewShifts extends Component {
     render() {
         return (
             <div id="page-wrap">
-                {/*{console.log('user data', this.props.usersOrgHourlyRate)}*/}
-                {/*{console.log(JSON.stringify(this.state.existingShifts))}*/}
-                {/*{console.log(this.props.userData)}*/}
                 <h1>{this.props.usersOrgName}</h1>
                 <b>Shifts</b>
                 <table border="1px solid">
                     <tbody>
                     <tr>
-                        <td>Employee Name</td>
+                        <td>User Id</td>
                         <td>Shift Date</td>
                         <td>Start Time</td>
                         <td>Finish Time</td>
-                        <td>Break Length</td>
+                        <td>Break Length (minutes)</td>
                         <td>Hours Worked</td>
                         <td>Shift Cost</td>
                     </tr>
-                    {/*existing shifts go in a row here/*/}
                     {this.mapShifts()}
                     <tr>
                         <td>
@@ -313,7 +242,6 @@ export class ViewShifts extends Component {
                     </tr>
                     </tbody>
                 </table>
-                {/*<button onClick={this.props.changePage('/orgs', this.props.userData)}>Back</button>*/}
             </div>
         )
     }
