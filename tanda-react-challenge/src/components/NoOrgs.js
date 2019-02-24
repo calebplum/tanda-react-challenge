@@ -75,7 +75,7 @@ export class NoOrgs extends Component {
         var self = this;
 
         const organisationsList = Array.from(self.state.organisations).map(function(id) {
-            return <li>{id.name} | {id.hourlyRate} <button onClick={() => self.renderEditOrgPage(id.id, id.name, id.hourlyRate)}>Edit</button>
+            return <li>{id.name} <button onClick={() => self.renderEditOrgPage(id.id, id.name, id.hourlyRate)}>Edit</button>
                 <button onClick={() => self.joinOrg(id.id)}>Join</button></li>
         });
 
