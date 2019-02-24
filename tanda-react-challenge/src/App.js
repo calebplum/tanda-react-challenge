@@ -10,6 +10,7 @@ import { RegistrationPage } from './components/RegistrationPage.js';
 import { OrgsPage } from './components/OrgsPage.js';
 import { EditOrg } from './components/EditOrg.js';
 import { ViewShifts } from './components/ViewShifts.js'
+import { NoOrgs } from './components/NoOrgs.js';
 
 class App extends Component {
 
@@ -25,7 +26,7 @@ class App extends Component {
 
 
     changePage(...params) {
-        // console.log("The data: " + data + " " + page);
+        console.log("Changepage called to "+params[0]);
         switch (params[0]) {
             case "/":
             case "/register":
@@ -42,6 +43,15 @@ class App extends Component {
                     currentPage: params[0],
                     editOrgData: params[1]
                 });
+            case "/noOrgs":
+                this.setState({
+                    currentPage: params[0],
+                });
+            case "/viewShifts":
+                this.setState({
+                    currentPage: params[0],
+                    usersOrgName: params[1]
+                });
         }
 
     }
@@ -57,7 +67,9 @@ class App extends Component {
                     "/":            <LoginPage cookies={this.props.cookies} changePage={this.changePage}/>,
                     "/register":    <RegistrationPage cookies={this.props.cookies}/>,
                     "/orgs":        <OrgsPage cookies={this.props.cookies} userData={this.state.userData} changePage={this.changePage} />,
-                    "/editOrg":     <EditOrg cookies={this.props.cookies} userData={this.state.userData} editOrgData = {this.state.editOrgData} changePage={this.changePage}/>
+                    "/editOrg":     <EditOrg cookies={this.props.cookies} userData={this.state.userData} editOrgData = {this.state.editOrgData} changePage={this.changePage}/>,
+                    "/noOrgs":      <NoOrgs cookies={this.props.cookies} userData={this.state.userData} editOrgData = {this.state.editOrgData} changePage={this.changePage}/>,
+                    "/viewShifts":  <ViewShifts cookies={this.props.cookies} userData={this.state.userData} usersOrgName={this.state.usersOrgName} changePage={this.changePage}/>
                 }[this.state.currentPage]}
 
 

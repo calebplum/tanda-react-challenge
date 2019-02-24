@@ -18,6 +18,12 @@ export class OrgsPage extends Component {
             // changePage: props.changePage
         };
         this.leaveOrg = this.leaveOrg.bind(this);
+        this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
+
+    }
+
+    rerenderParentCallback() {
+        this.forceUpdate();
     }
 
     leaveOrg() {
@@ -30,40 +36,15 @@ export class OrgsPage extends Component {
                 'Content-Type': 'application/json'
             }
         }).then((res) => {
-            console.log(res);
+            // console.log(res);
             this.setState({
                 orgData: ""
-            })
+            });
+            this.props.changePage('/orgs', this.props.userData);    // TODO - doesn't work because it's changing to the current page
         })
     }
 
-    // Function to check for a session-id in the browser cookies.
-    // If a session-id is found, the function will attempt to fetch the logged-in user's first name
-    // If no session-id is found, the function will alert the user (in future it will redirect to the login page)
-    componentWillMount() {
-        // const {cookies} = this.props; // The cookie store
-        // if (cookies.get('session-id')) {
-        //     fetch('/users/me', {
-        //         method: 'get',
-        //         headers: {
-        //             'Authorization': cookies.get('session-id'),
-        //             'Content-Type': 'application/json'
-        //         }
-        //     }).then((res) => res.json())
-        //         .then((data) => {
-        //             this.setState({
-        //                 name: data.name,
-        //                 memberOrganisation: data.organisationId
-        //             });
-        //         }).catch((err) => {
-        //             console.log(err);
-        //     });
-        // } else {
-        //     console.log("No session-id found (user not logged in");
-        //     // window.alert('Please login');
-        //     //TODO - redirect to login page
-        // }
-    }
+
 
     render() {
         return (
@@ -72,10 +53,14 @@ export class OrgsPage extends Component {
                 <CheckLoggedIn cookies={this.props.cookies}/>
                 Logged in as {this.state.userData.name} <span id="logout">Logout</span>
 
-                {/*{console.log(this.state.orgData)}*/}
+                {console.log(this.state.orgData)}
+                {/*{this.state.orgData.organisationId === null*/}
+                    {/*?   <NoOrgs cookies={this.props.cookies} userData={this.userData} orgData={this.state.orgData} changePage={this.props.changePage} rerenderParentCallback={this.rerenderParentCallback}/>*/}
+                        {/*: <CurrentOrg cookies={this.props.cookies} leaveOrg={this.leaveOrg} orgData={this.state.orgData} />}*/}
                 {this.state.orgData.organisationId === null
-                    ?   <NoOrgs cookies={this.props.cookies} userData={this.userData} changePage={this.props.changePage}/>
-                        : <CurrentOrg cookies={this.props.cookies} leaveOrg={this.leaveOrg} orgData={this.state.orgData} />}
+                    ?   this.props.changePage('/noOrgs')
+
+                    : <CurrentOrg cookies={this.props.cookies} leaveOrg={this.leaveOrg} orgData={this.state.orgData} changePage={this.props.changePage}/>}
             </div>
         )
     }

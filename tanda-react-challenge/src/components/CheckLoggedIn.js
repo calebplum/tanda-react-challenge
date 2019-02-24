@@ -5,7 +5,7 @@ export class CheckLoggedIn extends Component {
 
     checkLoggedIn() {
         const cookies = this.props.cookies.cookies;
-        console.log(cookies['session-id']);
+        // console.log(cookies['session-id']);
         if (!cookies['session-id']) {
             window.alert('Please login');
             return <Redirect to='/' />;

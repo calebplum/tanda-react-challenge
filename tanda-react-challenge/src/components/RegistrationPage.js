@@ -16,7 +16,7 @@ export class RegistrationPage extends Component {
 
     signUpUser() {
         const { cookies } = this.props;
-        console.log(this.state);    // debug aid
+        // console.log(this.state);    // debug aid
 
         fetch('/auth/signup',{
             method: 'post',

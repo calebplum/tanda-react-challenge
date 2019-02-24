@@ -28,7 +28,7 @@ export class NoOrgs extends Component {
                 }
             }).then((res) => res.json())
                 .then((data) => {
-                    console.log(data);
+                    // console.log(data);
                     this.setState({
                         organisations: data
                     });
@@ -41,8 +41,8 @@ export class NoOrgs extends Component {
     renderEditOrgPage(orgId, orgName, orgRate) {
         // console.log(this.props);
         // var self = this;
-        console.log('success');
-        console.log('id '+orgId, 'name '+orgName, 'rate '+orgRate);
+        // console.log('success');
+        // console.log('id '+orgId, 'name '+orgName, 'rate '+orgRate);
         const editOrgData = {
             orgId: orgId,
             orgName: orgName,
@@ -55,7 +55,8 @@ export class NoOrgs extends Component {
     }
 
     joinOrg(orgId) {
-        console.log('joinOrg() called');
+        // console.log('joinOrg() called');
+        console.log(this.props.orgData);
         const {cookies} = this.props;
         // if(cookies.get('session-id')) {
             fetch('/organisations/join', {
@@ -70,6 +71,11 @@ export class NoOrgs extends Component {
             }).then((res) => res.json())
                 .then((data) => {
                     console.log(data)
+                    console.log('hello');
+                    console.log(this.props.userData);
+                    this.props.changePage('/orgs', this.props.userData)
+                    // this.props.orgData.id = 3;
+                    // this.props.rerenderParentCallback();
                 })
                 .catch((error) => {
                     console.log(error);
