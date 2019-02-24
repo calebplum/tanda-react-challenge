@@ -71,7 +71,6 @@ export class ViewShifts extends Component {
 
             var shiftStartTimeStr = startDateObj.getHours() + ':' + shiftStartMinutes + shiftStartTimeAmPm;
 
-
             // Format the shift's end time
             var finishDateObj = new Date(shift.finish);
             var shiftFinishTimeAmPm = 'PM';
@@ -132,7 +131,7 @@ export class ViewShifts extends Component {
 
     createShift() {
 
-        // check for blank fields, return error alert and end function early if any are found
+        // Check for blank fields, return error alert and end function early if any are found
         if (
             this.state.newShiftDate === '' ||
             this.state.newShiftStartTime === '' ||
@@ -202,7 +201,7 @@ export class ViewShifts extends Component {
     render() {
         return (
             <div id="page-wrap">
-                <h1>{this.props.usersOrgName}</h1>
+                <h2>{this.props.usersOrgName}</h2>
                 <b>Shifts</b>
                 <table border="1px solid">
                     <tbody>

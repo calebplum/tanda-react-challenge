@@ -8,7 +8,6 @@ export class LoginPage extends Component {
             email: '',
             password: '',
         };
-
         this.loginUser = this.loginUser.bind(this);
     }
 
@@ -22,6 +21,7 @@ export class LoginPage extends Component {
         }
 
         const { cookies } = this.props;
+
         this.executeLogin()
             .then(userData => {
                 cookies.set('session-id', userData.sessionId, { path: '/' });
@@ -40,6 +40,7 @@ export class LoginPage extends Component {
     }
 
     executeLogin() {
+
         return new Promise((resolve,reject) => {
             fetch('/auth/login', {
                 method: 'post',
@@ -47,15 +48,17 @@ export class LoginPage extends Component {
                 body: JSON.stringify(this.state)
             })
                 .then(function(response) {
-                if (response.status === 404) {
-                    return (window.alert('Username/password not known'))
-                }
-                resolve(response.json())
-            }).catch((err) => reject(err));
+                    if (response.status === 404) {
+                        return (window.alert('Username/password not known'))
+                    }
+                    resolve(response.json())
+                })
+                .catch((err) => reject(err));
         })
     }
 
     getUserOrg(sessionId) {
+
         return new Promise((resolve,reject) => {
 
             fetch('/users/me', {
@@ -67,23 +70,23 @@ export class LoginPage extends Component {
             }).then((res) => res.json())
                 .then((data) => {
                     resolve(data);
-
-                }).catch((err) => reject(err));
+                })
+                .catch((err) => reject(err));
         })
     }
 
     render() {
         return (
             <div id="page-wrap">
-                <h1>Login Page</h1>
+                <h2>Login</h2>
                 <div className="login-form">
 
                     <label>
                         Email:
                     </label>
                     <input type="text" id="email" name="email" value={this.state.email}
-                        onChange={(event) =>
-                            this.setState({email: event.target.value})}/>
+                           onChange={(event) =>
+                               this.setState({email: event.target.value})}/>
                     <br />
                     <label>
                         Password:

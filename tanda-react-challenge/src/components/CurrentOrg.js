@@ -52,12 +52,10 @@ export class CurrentOrg extends Component {
         })
     }
 
-
     render() {
         return(
             <div id="page-wrap">
-                [CurrentOrg]
-                <h1>{this.state.usersOrgName}</h1>
+                <h2>{this.state.usersOrgName}</h2>
                 <button onClick={() => this.props.changePage('/viewShifts', this.state.usersOrgName, this.state.usersOrgHourlyRate)}>View Shifts</button>
                 <button onClick={() => this.props.changePage('/editOrg', {orgId: this.state.usersOrgId, orgName: this.state.usersOrgName, orgRate: this.state.usersOrgHourlyRate})}>Edit</button>
                 <button onClick={() => this.leaveOrg()}>Leave Organisation</button>

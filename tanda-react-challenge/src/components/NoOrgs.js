@@ -32,7 +32,7 @@ export class NoOrgs extends Component {
                         organisations: data
                     });
                 }).catch((err) => {
-                    console.log(err);
+                console.log(err);
             });
         }
     }
@@ -44,6 +44,7 @@ export class NoOrgs extends Component {
             orgName: orgName,
             orgRate: orgRate
         };
+
         this.props.changePage('/editOrg', editOrgData);
     }
 
@@ -51,31 +52,33 @@ export class NoOrgs extends Component {
 
         const {cookies} = this.props;
 
-            fetch('/organisations/join', {
-                method: 'post',
-                headers: {
-                    'Authorization': cookies.get('session-id'),
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    'organisationId': orgId
-                })
-            }).then((res) => res.json())
-                .then((data) => {
-                    this.props.updateUserOrganisationId(orgId); // Trigger the parent {OrgsPage} component to refresh
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-        // }
+        fetch('/organisations/join', {
+            method: 'post',
+            headers: {
+                'Authorization': cookies.get('session-id'),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'organisationId': orgId
+            })
+        }).then((res) => res.json())
+            .then((data) => {
+                this.props.updateUserOrganisationId(orgId); // Trigger the parent {OrgsPage} component to refresh
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     mapOrgs() {
+
         var self = this;
+
         const organisationsList = Array.from(self.state.organisations).map(function(id) {
             return <li>{id.name} | {id.hourlyRate} <button onClick={() => self.renderEditOrgPage(id.id, id.name, id.hourlyRate)}>Edit</button>
                 <button onClick={() => self.joinOrg(id.id)}>Join</button></li>
         });
+
         return organisationsList;
     }
 
@@ -93,8 +96,7 @@ export class NoOrgs extends Component {
                 'name': this.state.createJoinOrganisationName,
                 'hourlyRate': this.state.createJoinOrganisationHourlyRate
             })
-        })
-            .then((res) => {
+        }).then((res) => {
             if (res.status === 200) {
                 window.alert('Successfully created and joined organisation');
                 this.props.updateUserOrganisationId(res.json().id)
@@ -105,25 +107,24 @@ export class NoOrgs extends Component {
         })
     }
 
-
     render() {
-
         return (
             <div id="page-wrap">
+                <br />
                 You aren't a member of any organisations. Join an existing one or create a new one.
-                <h1>Organisations</h1>
+                <h2>Organisations</h2>
                 <div id="orgs-list">
                     <ul>
                         {this.mapOrgs()}
                     </ul>
                 </div>
 
-                <h1>Create Organisation</h1>
+                <h2>Create Organisation</h2>
                 <div>
                     <label>Name:</label>
                     <input type="text" value={this.state.createJoinOrganisationName}
-                        onChange={(event) =>
-                            this.setState({createJoinOrganisationName: event.target.value})}/>
+                           onChange={(event) =>
+                               this.setState({createJoinOrganisationName: event.target.value})}/>
                     <br />
                     <label>Hourly rate: $</label>
                     <input type="text" value={this.state.createJoinOrganisationHourlyRate}

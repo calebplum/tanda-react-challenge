@@ -25,10 +25,9 @@ export class OrgsPage extends Component {
     render() {
         return (
             <div id="page-wrap">
-                [OrgsPage]
                 {this.state.orgData.organisationId === null
                     ?   <NoOrgs cookies={this.props.cookies} changePage={this.props.changePage} updateUserOrganisationId={this.updateUserOrganisationId}/>
-                        : <CurrentOrg cookies={this.props.cookies} orgData={this.state.orgData} changePage={this.props.changePage} updateUserOrganisationId={this.updateUserOrganisationId}/>}
+                    : <CurrentOrg cookies={this.props.cookies} orgData={this.state.orgData} changePage={this.props.changePage} updateUserOrganisationId={this.updateUserOrganisationId}/>}
             </div>
         )
     }

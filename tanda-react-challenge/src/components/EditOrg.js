@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 export class EditOrg extends Component {
 
-
-
     constructor(props) {
         super(props);
         this.state = {
@@ -38,22 +36,21 @@ export class EditOrg extends Component {
             })
     }
 
-
     render() {
         return (
             <div>
-                <h1>Edit Organisation</h1>
+                <h2>Edit Organisation</h2>
                 <label>Name: </label>
                 <input type="text" id="organisation-name" name="organisation-name" value={this.state.orgName}
-                    onChange={(event) =>
-                        this.setState({orgName: event.target.value})}/>
+                       onChange={(event) =>
+                           this.setState({orgName: event.target.value})}/>
                 <br />
                 <label>Hourly Rate: $</label>
                 <input type="text" value={this.state.orgRate}
                        onChange={(event) =>
                            this.setState({orgRate: event.target.value})}/>
-               <br />
-               <button onClick={this.executeEditOrg}>Submit</button>
+                <br />
+                <button onClick={this.executeEditOrg}>Submit</button>
             </div>
         )
     }

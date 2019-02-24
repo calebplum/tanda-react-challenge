@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-//import logo from './logo.svg';
 import './App.css';
 import { withCookies } from 'react-cookie';
 import { LoginPage } from './components/LoginPage.js';
@@ -8,7 +7,6 @@ import { RegistrationPage } from './components/RegistrationPage.js';
 import { OrgsPage } from './components/OrgsPage.js';
 import { EditOrg } from './components/EditOrg.js';
 import { ViewShifts } from './components/ViewShifts.js'
-import { NoOrgs } from './components/NoOrgs.js';
 
 class App extends Component {
 
@@ -26,18 +24,16 @@ class App extends Component {
 
         const { cookies } = this.props;
 
-            fetch('/auth/logout', {
-                method: 'delete',
-                headers: {
-                    'Authorization': cookies.get('session-id'),
-                    'Content-Type': 'application/json'
-                }
-            }).then((res) => {
-                cookies.remove('session-id');
-                // this.setState({userData: ''});
-                this.changePage('/');
-            })
-
+        fetch('/auth/logout', {
+            method: 'delete',
+            headers: {
+                'Authorization': cookies.get('session-id'),
+                'Content-Type': 'application/json'
+            }
+        }).then((res) => {
+            cookies.remove('session-id');
+            this.changePage('/');
+        })
     }
 
     changePage(...params) {
@@ -64,31 +60,28 @@ class App extends Component {
                     usersOrgHourlyRate: params[2]
                 });
         }
-
     }
 
+    render() {
+        var loginGreeting = (this.state.currentPage !== '/' && this.state.currentPage !== '/register') ?  <span>Logged in as {this.state.userData.orgData.name} <button onClick={this.logoutUser}>Logout</button> </span> : '';
 
-  render() {
-    const { cookies } = this.props; // The cookie store
-      var loginGreeting = (this.state.currentPage !== '/' && this.state.currentPage !== '/register') ?  <span>Logged in as {this.state.userData.orgData.name} <button onClick={this.logoutUser}>Logout</button> </span> : '';
+        return (
+            <div>
+                <h1>Adnat</h1>
+                <div id="component-container">
 
-    return (
-        <div>
-            Session-id: {cookies.get('session-id')}
-            <div id="component-container">
-
-                {loginGreeting}
-                {{
-                    "/":            <LoginPage cookies={this.props.cookies} changePage={this.changePage}/>,
-                    "/register":    <RegistrationPage cookies={this.props.cookies} changePage={this.changePage}/>,
-                    "/orgs":        <OrgsPage cookies={this.props.cookies} userData={this.state.userData} changePage={this.changePage}/>,
-                    "/editOrg":     <EditOrg cookies={this.props.cookies} userData={this.state.userData} editOrgData = {this.state.editOrgData} changePage={this.changePage}/>,
-                    "/viewShifts":  <ViewShifts cookies={this.props.cookies} userData={this.state.userData} usersOrgName={this.state.usersOrgName} usersOrgHourlyRate={this.state.usersOrgHourlyRate}/>
-                }[this.state.currentPage]}
+                    {loginGreeting}
+                    {{
+                        "/":            <LoginPage cookies={this.props.cookies} changePage={this.changePage}/>,
+                        "/register":    <RegistrationPage cookies={this.props.cookies} changePage={this.changePage}/>,
+                        "/orgs":        <OrgsPage cookies={this.props.cookies} userData={this.state.userData} changePage={this.changePage}/>,
+                        "/editOrg":     <EditOrg cookies={this.props.cookies} userData={this.state.userData} editOrgData = {this.state.editOrgData} changePage={this.changePage}/>,
+                        "/viewShifts":  <ViewShifts cookies={this.props.cookies} userData={this.state.userData} usersOrgName={this.state.usersOrgName} usersOrgHourlyRate={this.state.usersOrgHourlyRate}/>
+                    }[this.state.currentPage]}
+                </div>
             </div>
-        </div>
-    );
-  }
+        );
+    }
 }
 
 export default withCookies(App);
