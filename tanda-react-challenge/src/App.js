@@ -50,7 +50,8 @@ class App extends Component {
             case "/viewShifts":
                 this.setState({
                     currentPage: params[0],
-                    usersOrgName: params[1]
+                    usersOrgName: params[1],
+                    usersOrgHourlyRate: params[2]
                 });
         }
 
@@ -69,7 +70,7 @@ class App extends Component {
                     "/orgs":        <OrgsPage cookies={this.props.cookies} userData={this.state.userData} changePage={this.changePage} />,
                     "/editOrg":     <EditOrg cookies={this.props.cookies} userData={this.state.userData} editOrgData = {this.state.editOrgData} changePage={this.changePage}/>,
                     "/noOrgs":      <NoOrgs cookies={this.props.cookies} userData={this.state.userData} editOrgData = {this.state.editOrgData} changePage={this.changePage}/>,
-                    "/viewShifts":  <ViewShifts cookies={this.props.cookies} userData={this.state.userData} usersOrgName={this.state.usersOrgName} changePage={this.changePage}/>
+                    "/viewShifts":  <ViewShifts cookies={this.props.cookies} userData={this.state.userData} usersOrgName={this.state.usersOrgName} usersOrgHourlyRate={this.state.usersOrgHourlyRate} changePage={this.changePage}/>
                 }[this.state.currentPage]}
 
 

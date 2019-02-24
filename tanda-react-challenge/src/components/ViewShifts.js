@@ -39,6 +39,8 @@ export class ViewShifts extends Component {
 
     mapShifts() {
 
+        var self = this;
+
         console.log('shifts from state', this.state.existingShifts);
 
         const shifts = Array.from(this.state.existingShifts).map(function(shift) {
@@ -72,6 +74,9 @@ export class ViewShifts extends Component {
             shiftDurationHours = shiftDurationHours - (shiftBreak / 60);    // Subtract the duration of the break (if any) from shift's duration
             var shiftDurationFormatted = shiftDurationHours.toFixed(2);
 
+            // Calculate the shift cost
+            var shiftCost = (shiftDurationHours * self.props.usersOrgHourlyRate).toFixed(2);
+
 
             return (
                 <tr>
@@ -94,47 +99,13 @@ export class ViewShifts extends Component {
                         {shiftDurationFormatted}
                     </td>
                     <td id='shift-cost'>
-                        {shift.userId}
+                        ${shiftCost}
                     </td>
                 </tr>
             )
         });
         console.log('shifts',shifts);
         return shifts;
-
-        // const shifts = Array.from(this.state.existingShifts).map(function(shift) {
-        //     var startDateObj = new Date(shift.start);
-        //     var finishDateObj = new Date(shift.finish);
-        //     var shiftStartDateStr = startDateObj.getDate().toString() + '/' + startDateObj.getMonth().toString() + '/' + startDateObj.getFullYear().toString()
-        //         // <tr><td>{shift.userId}</td><td>{shift}</td></tr>
-        //     return (
-        //         <tr>
-        //             <td>
-        //                 {shift.userId}
-        //             </td>
-        //             <td>
-        //                 {shift.userId}
-        //             </td>
-        //             <td>
-        //                 {shift.userId}
-        //             </td>
-        //             <td>
-        //                 {shift.userId}
-        //             </td>
-        //             <td>
-        //                 {shift.userId}
-        //             </td>
-        //             <td>
-        //                 {shift.userId}
-        //             </td>
-        //             <td>
-        //                 {shift.userId}
-        //             </td>
-        //         </tr>
-        //
-        //     )
-        //     });
-        // return shifts;
 
     }
 
@@ -161,6 +132,7 @@ export class ViewShifts extends Component {
     render() {
         return (
             <div id="page-wrap">
+                {console.log('user data', this.props.usersOrgHourlyRate)}
                 {/*{console.log(this.props.userData)}*/}
                 <h1>{this.props.usersOrgName}</h1>
                 <b>Shifts</b>

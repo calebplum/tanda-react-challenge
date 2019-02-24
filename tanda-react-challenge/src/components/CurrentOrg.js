@@ -29,6 +29,7 @@ export class CurrentOrg extends Component {
                 // console.log(data);
                 var usersOrg = (data.find(x => (x.id === 2)));
                 this.setState({usersOrgName: usersOrg.name});
+                this.setState({usersOrgHourlyRate: usersOrg.hourlyRate});
                 // console.log('UsersOrg Name: ' + usersOrg.name);
                 // console.log('UsersOrg Rate: ' + usersOrg.hourlyRate);
                 // this.state.usersOrgName = usersOrg.name;
@@ -64,7 +65,7 @@ export class CurrentOrg extends Component {
                 <h1>{this.state.usersOrgName}</h1>
                 {/*{console.log(this.props.orgData)}*/}
                 {/*<button onClick={this.props.changePage('/viewShifts')}>View Shifts</button>*/}
-                <button onClick={() => this.props.changePage('/viewShifts', this.state.usersOrgName)}>View Shifts</button>
+                <button onClick={() => this.props.changePage('/viewShifts', this.state.usersOrgName, this.state.usersOrgHourlyRate)}>View Shifts</button>
                 <br />
                 View Shifts | Edit |
                 <button onClick={() => this.props.leaveOrg()}>Leave Organisation</button>
