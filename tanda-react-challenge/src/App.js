@@ -43,21 +43,29 @@ class App extends Component {
                 this.setState({
                     currentPage: params[0]
                 });
+                break;
             case "/orgs":
                 this.setState({
                     currentPage: params[0],
                     userData: params[1]
                 });
+                break;
             case "/editOrg":
                 this.setState({
                     currentPage: params[0],
                     editOrgData: params[1]
                 });
+                break;
             case "/viewShifts":
                 this.setState({
                     currentPage: params[0],
                     usersOrgName: params[1],
                     usersOrgHourlyRate: params[2]
+                });
+                break;
+            default:
+                this.setState({
+                    currentPage: "/"
                 });
         }
     }

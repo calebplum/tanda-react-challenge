@@ -54,7 +54,7 @@ export class ViewShifts extends Component {
 
         var self = this;
 
-        const shifts = Array.from(this.state.existingShifts).map(function(shift) {
+        const shifts = Array.from(this.state.existingShifts).map(function(shift, index) {
 
             // Format the shift's start time
             var startDateObj = new Date(shift.start);
@@ -101,7 +101,7 @@ export class ViewShifts extends Component {
             var shiftCost = (shiftDurationHours * self.props.usersOrgHourlyRate).toFixed(2);
 
             return (
-                <tr>
+                <tr key={index}>
                     <td id='employee-name'>
                         {shift.userId}
                     </td>

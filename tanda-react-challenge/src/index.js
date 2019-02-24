@@ -4,12 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { CookiesProvider } from 'react-cookie';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { sessionReducer } from 'redux-react-session'
-import {LoginPage} from "./components/LoginPage";
-import {RegistrationPage} from "./components/RegistrationPage";
 
 let initialStore = {
     'session-id': null

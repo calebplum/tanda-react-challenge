@@ -14,7 +14,6 @@ export class CurrentOrg extends Component {
     componentDidMount() {
 
         const {cookies} = this.props;
-        const userOrg = this.props.orgData.id;
 
         fetch('/organisations', {
             method: 'get',
