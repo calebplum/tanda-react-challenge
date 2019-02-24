@@ -5,11 +5,16 @@ export class ViewShifts extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            existingShifts: 'none'
+            existingShifts: 'none',
+            newShiftDate: '',
+            newShiftStartTime: '',
+            newShiftFinishTime: '',
+            newShiftBreakLength: '',
         };
         this.createShift = this.createShift.bind(this);
         this.componentWillMount = this.componentWillMount.bind(this);
         this.mapShifts = this.mapShifts.bind(this);
+        this.appendToExistingShifts = this.appendToExistingShifts.bind(this);
     }
 
 
@@ -25,7 +30,7 @@ export class ViewShifts extends Component {
             }
         }).then((res) => res.json())
             .then((data) => {
-                // console.log(data);
+                console.log('api shifts', data);
                 this.setState({
                     existingShifts: data
                 })
@@ -35,6 +40,18 @@ export class ViewShifts extends Component {
             }).catch((err) => {
             console.log(err);
         });
+    }
+
+    appendToExistingShifts(shiftStart, shiftFinish, breakLength) {
+        const newShiftObject = {
+            "id": 2,
+            "userId": 2,
+            "start": "2018-01-01 10:15",
+            "finish": "2018-01-01 12:20",
+            "breakLength": null
+        };
+        var newArray = this.state.existingShifts.push(newShiftObject);
+        this.setState({existingShifts: newArray});
     }
 
     mapShifts() {
@@ -111,6 +128,53 @@ export class ViewShifts extends Component {
 
     createShift() {
 
+        // check for blank fields, return error alert and end function early if any blank fields are found
+
+        console.log(
+            'Shift Date' + this.state.newShiftDate +
+            ' Start Time' + this.state.newShiftStartTime +
+            ' Finish Time' + this.state.newShiftFinishTime +
+            ' Break Length' + this.state.newShiftBreakLength
+        );
+
+        // Fetch and format the start date of the new shift (DD/MM/YYYY)
+        var newShiftDateArray = this.state.newShiftDate.split('/');
+        var newShiftDateDay = newShiftDateArray[0];
+        var newShiftDateMonth = newShiftDateArray[1];
+        var newShiftDateYear = newShiftDateArray[2];
+
+        // Fetch and format the start time of the new shift (HH:MM)
+        var newShiftStartTimeArray = this.state.newShiftStartTime.split(':');
+        var newShiftStartTimeMinute = newShiftStartTimeArray[0];
+        var newShiftStartTimeHour = newShiftStartTimeArray[1];
+
+        // Fetch and format the end time of the new shift (HH:MM)
+        var newShiftFinishTimeArray = this.state.newShiftFinishTime.split(':');
+        var newShiftFinishTimeMinute = newShiftFinishTimeArray[0];
+        var newShiftFinishTimeHour = newShiftFinishTimeArray[1];
+
+        // Create the date object for the new shift's start date/time
+        var newShiftStartDatetime = new Date(newShiftDateYear, newShiftDateMonth, newShiftDateDay, newShiftStartTimeHour, newShiftStartTimeMinute); // TODO - confirm the datetime's validity, raise alert if invalid
+
+        // Create the date object for the new shift's finish date/time
+        var newShiftFinishDateTime = new Date(newShiftDateYear, newShiftDateMonth, newShiftDateDay, newShiftFinishTimeHour, newShiftFinishTimeMinute); // TODO - confirm the datetime's validity, raise alert if invalid
+
+        // Subtract the break time from the shift's end-time
+        newShiftFinishDateTime = newShiftFinishDateTime - (parseInt(this.state.newShiftBreakLength) * 60000);
+        if (this.state.newShiftBreakLength !== '') {
+            var newShiftBreakLength = parseInt(this.state.newShiftBreakLength);
+        }
+        else {
+            var newShiftBreakLength = 0;
+        }
+
+        // console.log(
+        //     'day: ' + newShiftDateDay +
+        //     ' month: ' + newShiftDateMonth +
+        //     ' year: ' + newShiftDateYear
+        // );
+
+
         const {cookies} = this.props;
         fetch('/shifts/', {
             method: 'post',
@@ -120,11 +184,13 @@ export class ViewShifts extends Component {
             },
             body: JSON.stringify({
                 'userId': 2,
-                'start': "2018-01-01 10:15",
-                'finish': "2018-01-01 12:20"
+                'start': newShiftStartDatetime.toString(),
+                'finish': newShiftFinishDateTime.toString(),
+                'breakLength': newShiftBreakLength
             })
         }).then((res) => {
-            console.log(res);
+            // console.log(res);
+            this.appendToExistingShifts(1, 2, 3);
         })
 
     }
@@ -132,7 +198,8 @@ export class ViewShifts extends Component {
     render() {
         return (
             <div id="page-wrap">
-                {console.log('user data', this.props.usersOrgHourlyRate)}
+                {/*{console.log('user data', this.props.usersOrgHourlyRate)}*/}
+                {/*{console.log(JSON.stringify(this.state.existingShifts))}*/}
                 {/*{console.log(this.props.userData)}*/}
                 <h1>{this.props.usersOrgName}</h1>
                 <b>Shifts</b>
@@ -154,16 +221,20 @@ export class ViewShifts extends Component {
                             {this.props.userData.orgData.name}
                         </td>
                         <td>
-                            <input></input>
+                            <input id='newShiftDate' onChange={(event) =>
+                                this.setState({newShiftDate: event.target.value})}/>
                         </td>
                         <td>
-                            <input></input>
+                            <input id='newShiftStartTime' onChange={(event) =>
+                                this.setState({newShiftStartTime: event.target.value})}/>
                         </td>
                         <td>
-                            <input></input>
+                            <input id='newShiftFinishTime' onChange={(event) =>
+                                this.setState({newShiftFinishTime: event.target.value})}/>
                         </td>
                         <td>
-                            <input></input>
+                            <input id='newShiftBreakLength' onChange={(event) =>
+                                this.setState({newShiftBreakLength: event.target.value})}/>
                         </td>
                         <td colSpan="2">
                             <button onClick={this.createShift}>Create shift</button>
@@ -171,6 +242,7 @@ export class ViewShifts extends Component {
                     </tr>
                     </tbody>
                 </table>
+                {/*<button onClick={this.props.changePage('/orgs', this.props.userData)}>Back</button>*/}
             </div>
         )
     }
