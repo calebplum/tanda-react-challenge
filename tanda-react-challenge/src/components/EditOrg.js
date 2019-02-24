@@ -8,26 +8,26 @@ export class EditOrg extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            orgId: 0,
-            orgName: '',
-            orgHourlyRate: null
+            orgId: this.props.orgId,
+            orgName: this.props.orgName,
+            orgRate: this.props.orgRate
         };
-        this.componentDidMount = this.componentDidMount.bind(this);
+        // this.componentDidMount = this.componentDidMount.bind(this);
     }
 
-    componentDidMount() {
-        const {cookies} = this.props; // The cookie store
-        const urlParams = this.props.urlParams.match.params;
-        console.log(this.props.urlParams.match.params.orgId)
-        // console.log(urlParams.orgId);
-        this.setState({
-            // orgId: this.props.urlParams.match.params.orgId
-            orgId: 2,
-            orgName: 'harry'
-        });
-        console.log(this.state);
-
-        this.setState({orgId: urlParams.orgId});
+    // componentDidMount() {
+    //     const {cookies} = this.props; // The cookie store
+    //     const urlParams = this.props.urlParams.match.params;
+    //     console.log(this.props.urlParams.match.params.orgId)
+    //     // console.log(urlParams.orgId);
+    //     this.setState({
+    //         // orgId: this.props.urlParams.match.params.orgId
+    //         orgId: 2,
+    //         orgName: 'harry'
+    //     });
+    //     console.log(this.state);
+    //
+    //     this.setState({orgId: urlParams.orgId});
         // console.log(this.state)
         // if (cookies.get('session-id') && urlParams.orgId) {
         //     fetch('/organisations', {
@@ -47,7 +47,7 @@ export class EditOrg extends Component {
         //         console.log(err);
         //     });
         // }
-    }
+    // }
 
     // componentWillMount() {
         // const { handle } = this.props.match.params;
@@ -80,10 +80,12 @@ export class EditOrg extends Component {
             <div>
                 <h1>Edit Organisation</h1>
                 <label>Name: </label>
-                <input type="text" />
+                <input type="text" value={this.props.editOrgData.orgName}
+                    onChange={(event) =>
+                    this.setState({orgName: event.target.value})}/>
                 <br />
                 <label>Hourly Rate: $</label>
-                <input type="text" />
+                <input type="text" value={this.props.editOrgData.orgRate}/>
             </div>
         )
     }

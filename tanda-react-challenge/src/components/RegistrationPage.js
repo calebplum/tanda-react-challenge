@@ -24,7 +24,6 @@ export class RegistrationPage extends Component {
             body: JSON.stringify(this.state)
         }).then((res) => res.json())
             .then((data) => {
-                console.log(data);   // debugging aid
                 cookies.set('session-id', data.sessionId, { path: '/' });
             })
             .catch((err) => console.log(err));

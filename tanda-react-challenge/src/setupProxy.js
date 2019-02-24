@@ -9,4 +9,7 @@ module.exports = function(app) {
     app.use(proxy('/users/',
         { target: 'http://localhost:3000/' }
     ));
+    app.use(proxy('/shifts/',
+        { target: 'http://localhost:3000/' }
+    ));
 };
