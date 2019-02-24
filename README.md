@@ -2,8 +2,8 @@ Tanda Adnat React front-end challenge from [Tanda](https://github.com/TandaHQ/wo
 
 Instructions:
 1. Navigate to the backend server in ./backend and run:
--- $ npm install
--- $ npm start
+	* $ npm install
+	* $ npm start
 2. Navigate to the frontend server in ./tanda-react-challenge and run:
--- $ npm install
--- $ npm start
+	* $ npm install
+	* $ npm start
