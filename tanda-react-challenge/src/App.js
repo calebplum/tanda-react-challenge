@@ -40,8 +40,6 @@ class App extends Component {
                 this.changePage('/');
             })
 
-
-
     }
 
     changePage(...params) {
@@ -86,6 +84,8 @@ class App extends Component {
 
     return (
         <div>
+            {/*{console.log('userdata: ',this.state.userData)}*/}
+            {/*{this.updateUserDataOrg(1)}*/}
             Session-id: {cookies.get('session-id')}
             <div id="component-container">
 
@@ -97,7 +97,7 @@ class App extends Component {
                 {{
                     "/":            <LoginPage cookies={this.props.cookies} changePage={this.changePage}/>,
                     "/register":    <RegistrationPage cookies={this.props.cookies} changePage={this.changePage}/>,
-                    "/orgs":        <OrgsPage cookies={this.props.cookies} userData={this.state.userData} changePage={this.changePage} />,
+                    "/orgs":        <OrgsPage cookies={this.props.cookies} userData={this.state.userData} changePage={this.changePage}/>,
                     "/editOrg":     <EditOrg cookies={this.props.cookies} userData={this.state.userData} editOrgData = {this.state.editOrgData} changePage={this.changePage}/>,
                     "/noOrgs":      <NoOrgs cookies={this.props.cookies} userData={this.state.userData} editOrgData = {this.state.editOrgData} changePage={this.changePage} orgsList={this.state.orgsList}/>,
                     "/viewShifts":  <ViewShifts cookies={this.props.cookies} userData={this.state.userData} usersOrgName={this.state.usersOrgName} usersOrgHourlyRate={this.state.usersOrgHourlyRate} changePage={this.changePage}/>

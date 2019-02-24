@@ -11,10 +11,13 @@ export class NoOrgs extends Component {
             // userData: props.userData.userData,
             // orgData: props.userData.orgData
             changePage: props.changePage,
+            createJoinOrganisationName: '',
+            createJoinOrganisationHourlyRate: ''
         };
         this.renderEditOrgPage = this.renderEditOrgPage.bind(this);
         this.joinOrg = this.joinOrg.bind(this);
         this.mapOrgs = this.mapOrgs.bind(this);
+        this.createAndJoinOrganisation = this.createAndJoinOrganisation.bind(this);
     }
 
     componentWillMount() {
@@ -82,6 +85,7 @@ export class NoOrgs extends Component {
                     // console.log(this.props.userData);
                     // this.props.changePage('/orgs', this.props.userData)
                     this.props.updateUserOrganisationId(orgId); // Trigger the parent {OrgsPage} component to refresh
+                    // this.props.updateUserDataOrg(orgId);
                     // this.props.orgData.id = 3;
                     // this.props.rerenderParentCallback();
                 })
@@ -101,6 +105,41 @@ export class NoOrgs extends Component {
                 <button onClick={() => self.joinOrg(id.id)}>Join</button></li>
         });
         return organisationsList;
+    }
+
+    createAndJoinOrganisation() {
+
+        // console.log('name ',this.state.createJoinOrganisationName);
+        // console.log('rate ',this.state.createJoinOrganisationHourlyRate);
+
+        const { cookies } = this.props;
+
+        fetch('/organisations/create_join', {
+            method: 'post',
+            headers: {
+                'Authorization': cookies.get('session-id'),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify( {
+                'name': this.state.createJoinOrganisationName,
+                'hourlyRate': this.state.createJoinOrganisationHourlyRate
+            })
+        })//.then((res) => res.json())
+            .then((res) => {
+            // console.log('res', res);
+            if (res.status === 200) {
+                window.alert('Successfully created and joined organisation');
+                this.props.updateUserOrganisationId(res.json().id)
+            }
+            else {
+                window.alert('Error creating/joining organisation ')
+                // console.log(res.message);
+            }
+        })
+        //     .catch((error) => {
+        //     window.alert('Failed to create/join organisation: ' + error)
+        // })
+
     }
 
 
@@ -125,12 +164,16 @@ export class NoOrgs extends Component {
                 <h1>Create Organisation</h1>
                 <div>
                     <label>Name:</label>
-                    <input type="text" />
+                    <input type="text" value={this.state.createJoinOrganisationName}
+                        onChange={(event) =>
+                            this.setState({createJoinOrganisationName: event.target.value})}/>
                     <br />
                     <label>Hourly rate: $</label>
-                    <input type="text" />
+                    <input type="text" value={this.state.createJoinOrganisationHourlyRate}
+                           onChange={(event) =>
+                               this.setState({createJoinOrganisationHourlyRate: event.target.value})}/>
                     <br />
-                    <button>Create and Join</button>
+                    <button onClick={this.createAndJoinOrganisation}>Create and Join</button>
                 </div>
             </div>
         )

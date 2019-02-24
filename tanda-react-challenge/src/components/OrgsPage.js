@@ -57,6 +57,8 @@ export class OrgsPage extends Component {
         this.setState({
             orgData: newOrgData
         })
+
+        // this.props.updateUserDataOrg(id);
     }
 
     leaveOrg() {
@@ -86,12 +88,12 @@ export class OrgsPage extends Component {
                 {/*{this.fetchOrgsList()}*/}
                 [OrgsPage]
                 {/*<CheckLoggedIn cookies={this.props.cookies}/>*/}
-                {/*{console.log(this.props.userData.orgData.name)}*/}
+                {console.log(this.props.userData.orgData.name)}
                 {/*Logged in as {this.props.userData.orgData.name} <span id="logout">Logout</span>*/}
 
                 {/*{console.log(this.state.orgData)}*/}
                 {this.state.orgData.organisationId === null
-                    ?   <NoOrgs cookies={this.props.cookies} userData={this.userData} changePage={this.props.changePage} updateUserOrganisationId={this.updateUserOrganisationId}/>
+                    ?   <NoOrgs cookies={this.props.cookies} userData={this.userData} changePage={this.props.changePage} updateUserOrganisationId={this.updateUserOrganisationId} updateUserDataOrg={this.props.updateUserDataOrg}/>
                         : <CurrentOrg cookies={this.props.cookies} leaveOrg={this.leaveOrg} orgData={this.state.orgData} changePage={this.props.changePage} updateUserOrganisationId={this.updateUserOrganisationId}/>}
                 {/*{this.state.orgData.organisationId === null*/}
                     {/*?   this.props.changePage('/noOrgs', this.state.orgsList)*/}

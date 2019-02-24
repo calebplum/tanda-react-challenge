@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="32991c8a-a96d-49be-a961-2a661d07a4e8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../backend/db.db" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/db.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CurrentOrg.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CurrentOrg.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NoOrgs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NoOrgs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/OrgsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/OrgsPage.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,11 +54,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/App.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="231">
-                  <caret line="61" column="43" lean-forward="true" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
+                <state relative-caret-position="555">
+                  <caret line="82" column="118" lean-forward="true" selection-start-line="82" selection-start-column="118" selection-end-line="82" selection-end-column="118" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                     <element signature="e#117#136#0" expanded="true" />
@@ -75,10 +77,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/OrgsPage.js">
+            <entry file="file://$PROJECT_DIR$/src/components/EditOrg.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="590">
-                  <caret line="66" column="22" lean-forward="true" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="22" />
+                <state relative-caret-position="570">
+                  <caret line="38" column="68" lean-forward="true" selection-start-line="38" selection-start-column="68" selection-end-line="38" selection-end-column="68" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                   </folding>
@@ -87,10 +89,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/EditOrg.js">
+            <entry file="file://$PROJECT_DIR$/src/components/LoginPage.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="390">
-                  <caret line="26" column="50" lean-forward="true" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+                <state relative-caret-position="600">
+                  <caret line="40" column="14" lean-forward="true" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                   </folding>
@@ -98,11 +100,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/CurrentOrg.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="846">
-                  <caret line="78" column="10" lean-forward="true" selection-start-line="78" selection-start-column="10" selection-end-line="78" selection-end-column="10" />
+                <state relative-caret-position="1335">
+                  <caret line="89" column="44" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="44" />
                 </state>
               </provider>
             </entry>
@@ -123,17 +125,17 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/NoOrgs.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="560">
-                  <caret line="99" column="96" selection-start-line="99" selection-start-column="79" selection-end-line="99" selection-end-column="96" />
+                <state relative-caret-position="195">
+                  <caret line="87" column="54" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/LoginPage.js">
+            <entry file="file://$PROJECT_DIR$/src/components/OrgsPage.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="930">
-                  <caret line="62" column="50" lean-forward="true" selection-start-line="62" selection-start-column="50" selection-end-line="62" selection-end-column="50" />
+                <state relative-caret-position="556">
+                  <caret line="61" column="5" lean-forward="true" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                   </folding>
@@ -154,12 +156,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>state.usersOrgName</find>
-      <find>this.props</find>
-      <find>rerenderParentCallback</find>
-      <find>setstate</find>
-      <find>orgData</find>
-      <find>orgsList</find>
       <find>leaveOrg</find>
       <find>updateUserJoinedOrgStatus</find>
       <find>fetchOrgsList</find>
@@ -175,15 +171,21 @@
       <find>logged in as</find>
       <find>self</find>
       <find>this.state.userData</find>
-      <find>userdata</find>
       <find>userid</find>
       <find>/editOrg</find>
       <find>organisations</find>
-      <find>checkLoggedIn</find>
-      <find>console.log</find>
-      <find>2</find>
       <find>editOrgData</find>
       <find>renderEditOrgPage</find>
+      <find>create organisation</find>
+      <find>create organisa</find>
+      <find>userdata</find>
+      <find>checkLoggedIn</find>
+      <find>updateUserOrganisationId</find>
+      <find>2</find>
+      <find>console.log</find>
+      <find>updateUserDataOrg</find>
+      <find>changepage</find>
+      <find>newUserData.orgData</find>
     </findStrings>
     <replaceStrings>
       <replace>email</replace>
@@ -210,15 +212,15 @@
         <option value="$PROJECT_DIR$/src/components/currentOrg.js" />
         <option value="$PROJECT_DIR$/src/components/CheckLoggedIn.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.js" />
-        <option value="$PROJECT_DIR$/src/components/NoOrgs.js" />
         <option value="$PROJECT_DIR$/src/components/EditOrg.js" />
         <option value="$PROJECT_DIR$/src/setupProxy.js" />
         <option value="$PROJECT_DIR$/src/components/RegistrationPage.js" />
-        <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/components/OrgsPage.js" />
         <option value="$PROJECT_DIR$/src/components/LoginPage.js" />
         <option value="$PROJECT_DIR$/src/components/ViewShifts.js" />
         <option value="$PROJECT_DIR$/src/components/CurrentOrg.js" />
+        <option value="$PROJECT_DIR$/src/components/OrgsPage.js" />
+        <option value="$PROJECT_DIR$/src/components/NoOrgs.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
   </component>
@@ -306,12 +308,12 @@
       <workItem from="1550534927595" duration="808000" />
       <workItem from="1550895111056" duration="209000" />
       <workItem from="1550896498696" duration="11342000" />
-      <workItem from="1550977613682" duration="44818000" />
+      <workItem from="1550977613682" duration="48180000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100838000" />
+    <option name="totallyTimeSpent" value="104200000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-4" width="2560" height="1444" extended-state="6" />
@@ -423,23 +425,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/EditOrg.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="50" lean-forward="true" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/setupProxy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/RegistrationPage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -454,16 +439,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/LoginPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="62" column="50" lean-forward="true" selection-start-line="62" selection-start-column="50" selection-end-line="62" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ViewShifts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -471,28 +446,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/NoOrgs.js">
+    <entry file="file://$PROJECT_DIR$/src/components/LoginPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="99" column="96" selection-start-line="99" selection-start-column="79" selection-end-line="99" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="61" column="43" lean-forward="true" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#117#136#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/OrgsPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="66" column="22" lean-forward="true" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="22" />
+        <state relative-caret-position="600">
+          <caret line="40" column="14" lean-forward="true" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -501,8 +458,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/CurrentOrg.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="846">
-          <caret line="78" column="10" lean-forward="true" selection-start-line="78" selection-start-column="10" selection-end-line="78" selection-end-column="10" />
+        <state relative-caret-position="1335">
+          <caret line="89" column="44" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setupProxy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/EditOrg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="68" lean-forward="true" selection-start-line="38" selection-start-column="68" selection-end-line="38" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/OrgsPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="61" column="5" lean-forward="true" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/NoOrgs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="87" column="54" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="82" column="118" lean-forward="true" selection-start-line="82" selection-start-column="118" selection-end-line="82" selection-end-column="118" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#117#136#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
