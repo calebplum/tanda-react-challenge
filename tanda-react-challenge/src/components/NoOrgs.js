@@ -10,7 +10,7 @@ export class NoOrgs extends Component {
             organisations: {},
             // userData: props.userData.userData,
             // orgData: props.userData.orgData
-            changePage: props.changePage
+            changePage: props.changePage,
         };
         this.renderEditOrgPage = this.renderEditOrgPage.bind(this);
         this.joinOrg = this.joinOrg.bind(this);
@@ -18,6 +18,13 @@ export class NoOrgs extends Component {
     }
 
     componentWillMount() {
+
+        // var orgsList = this.props.fetchOrgsList();
+        // this.setState({
+        //     organisations: orgsList
+        // })
+        // console.log(orgsList)
+
         const {cookies} = this.props; // The cookie store
         if (cookies.get('session-id')) {
             fetch('/organisations', {
@@ -73,7 +80,8 @@ export class NoOrgs extends Component {
                     console.log(data)
                     console.log('hello');
                     console.log(this.props.userData);
-                    this.props.changePage('/orgs', this.props.userData)
+                    // this.props.changePage('/orgs', this.props.userData)
+                    this.props.updateUserOrganisationId(orgId); // Trigger the parent {OrgsPage} component to refresh
                     // this.props.orgData.id = 3;
                     // this.props.rerenderParentCallback();
                 })
@@ -87,7 +95,6 @@ export class NoOrgs extends Component {
         var self = this;
         // return self.state;
         // console.log(self.state.organisations);
-        console.log('in a log', this.props.orgsList);
         const organisationsList = Array.from(self.state.organisations).map(function(id) {
             // return <li>{id.name} | {id.hourlyRate} <button onClick={self.renderEditOrgPage}>Edit</button></li>
             return <li>{id.name} | {id.hourlyRate} <button onClick={() => self.renderEditOrgPage(id.id, id.name, id.hourlyRate)}>Edit</button>

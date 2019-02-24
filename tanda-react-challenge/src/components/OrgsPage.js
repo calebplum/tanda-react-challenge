@@ -20,7 +20,8 @@ export class OrgsPage extends Component {
         };
         this.leaveOrg = this.leaveOrg.bind(this);
         this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
-        this.fetchOrgsList = this.fetchOrgsList.bind(this);
+        // this.fetchOrgsList = this.fetchOrgsList.bind(this);
+        this.updateUserOrganisationId = this.updateUserOrganisationId.bind(this);
 
     }
 
@@ -28,24 +29,34 @@ export class OrgsPage extends Component {
         this.forceUpdate();
     }
 
-    fetchOrgsList() {
+    // fetchOrgsList() {
+    //
+    //     const {cookies} = this.props; // The cookie store
+    //
+    //     if (cookies.get('session-id')) {
+    //         fetch('/organisations', {
+    //             method: 'get',
+    //             headers: {
+    //                 'Authorization': cookies.get('session-id'),
+    //                 'Content-Type': 'application/json'
+    //             }
+    //         }).then((res) => res.json())
+    //             .then((data) => {
+    //                 console.log('from orgspage orgslist', data);
+    //                 // this.setState({orgsList: data})
+    //                 return data;
+    //             })
+    //     }
+    //
+    // }
 
-        const {cookies} = this.props; // The cookie store
+    updateUserOrganisationId(id) {
+        var newOrgData = this.state.orgData;
+        newOrgData.organisationId = id;
 
-        if (cookies.get('session-id')) {
-            fetch('/organisations', {
-                method: 'get',
-                headers: {
-                    'Authorization': cookies.get('session-id'),
-                    'Content-Type': 'application/json'
-                }
-            }).then((res) => res.json())
-                .then((data) => {
-                    console.log('from orgspage orgslist', data);
-                    this.setState({orgsList: data})
-                })
-        }
-
+        this.setState({
+            orgData: newOrgData
+        })
     }
 
     leaveOrg() {
@@ -62,7 +73,8 @@ export class OrgsPage extends Component {
             this.setState({
                 orgData: ""
             });
-            this.props.changePage('/orgs', this.props.userData);    // TODO - doesn't work because it's changing to the current page
+            // this.props.changePage('/orgs', this.props.userData);    // TODO - doesn't work because it's changing to the current page
+            this.updateUserOrganisationId(null);
         })
     }
 
@@ -71,19 +83,19 @@ export class OrgsPage extends Component {
     render() {
         return (
             <div id="page-wrap">
-                {this.fetchOrgsList()}
+                {/*{this.fetchOrgsList()}*/}
                 [OrgsPage]
                 <CheckLoggedIn cookies={this.props.cookies}/>
                 Logged in as {this.state.userData.name} <span id="logout">Logout</span>
 
                 {console.log(this.state.orgData)}
-                {/*{this.state.orgData.organisationId === null*/}
-                    {/*?   <NoOrgs cookies={this.props.cookies} userData={this.userData} orgData={this.state.orgData} changePage={this.props.changePage} rerenderParentCallback={this.rerenderParentCallback}/>*/}
-                        {/*: <CurrentOrg cookies={this.props.cookies} leaveOrg={this.leaveOrg} orgData={this.state.orgData} />}*/}
                 {this.state.orgData.organisationId === null
-                    ?   this.props.changePage('/noOrgs')
+                    ?   <NoOrgs cookies={this.props.cookies} userData={this.userData} changePage={this.props.changePage} updateUserOrganisationId={this.updateUserOrganisationId}/>
+                        : <CurrentOrg cookies={this.props.cookies} leaveOrg={this.leaveOrg} orgData={this.state.orgData} changePage={this.props.changePage} updateUserOrganisationId={this.updateUserOrganisationId}/>}
+                {/*{this.state.orgData.organisationId === null*/}
+                    {/*?   this.props.changePage('/noOrgs', this.state.orgsList)*/}
 
-                    : <CurrentOrg cookies={this.props.cookies} leaveOrg={this.leaveOrg} orgData={this.state.orgData} changePage={this.props.changePage}/>}
+                    {/*: <CurrentOrg cookies={this.props.cookies} leaveOrg={this.leaveOrg} orgData={this.state.orgData} changePage={this.props.changePage}/>}*/}
             </div>
         )
     }

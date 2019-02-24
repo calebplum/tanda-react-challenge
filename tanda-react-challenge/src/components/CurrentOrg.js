@@ -11,6 +11,7 @@ export class CurrentOrg extends Component {
         // this.leaveOrg = this.leaveOrg.bind(this);
         // this.getOrgInfo = this.getOrgInfo.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
+        this.leaveOrg = this.leaveOrg.bind(this);
     }
 
     componentDidMount() {
@@ -27,7 +28,8 @@ export class CurrentOrg extends Component {
         }).then((res) => res.json())
             .then((data) => {
                 // console.log(data);
-                var usersOrg = (data.find(x => (x.id === 2)));
+                console.log('****id ', this.props.orgData.organisationId);
+                var usersOrg = (data.find(x => (x.id === this.props.orgData.organisationId)));  // Find list index for the user's current org
                 this.setState({usersOrgName: usersOrg.name});
                 this.setState({usersOrgHourlyRate: usersOrg.hourlyRate});
                 // console.log('UsersOrg Name: ' + usersOrg.name);
@@ -57,6 +59,25 @@ export class CurrentOrg extends Component {
         //     }).catch((err) => console.log(err));
     }
 
+    leaveOrg() {
+        const { cookies } = this.props;
+
+        fetch('/organisations/leave', {
+            method: 'post',
+            headers: {
+                'Authorization': cookies.get('session-id'),
+                'Content-Type': 'application/json'
+            }
+        }).then((res) => {
+            // console.log(res);
+            this.setState({
+                orgData: ""
+            });
+            // this.props.changePage('/orgs', this.props.userData);    // TODO - doesn't work because it's changing to the current page
+            this.props.updateUserOrganisationId(null);
+        })
+    }
+
 
     render() {
         return(
@@ -68,7 +89,8 @@ export class CurrentOrg extends Component {
                 {/*<button onClick={this.props.changePage('/viewShifts')}>View Shifts</button>*/}
                 <button onClick={() => this.props.changePage('/viewShifts', this.state.usersOrgName, this.state.usersOrgHourlyRate)}>View Shifts</button>
                 | Edit |
-                <button onClick={() => this.props.leaveOrg()}>Leave Organisation</button>
+                {/*<button onClick={() => this.props.leaveOrg()}>Leave Organisation</button>*/}
+                <button onClick={() => this.leaveOrg()}>Leave Organisation</button>
             </div>
         )
     }

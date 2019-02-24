@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="32991c8a-a96d-49be-a961-2a661d07a4e8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../backend/db.db" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/db.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CurrentOrg.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CurrentOrg.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/NoOrgs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NoOrgs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/OrgsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/OrgsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ViewShifts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ViewShifts.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,11 +68,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/App.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="780">
-                  <caret line="61" column="55" lean-forward="true" selection-start-line="61" selection-start-column="55" selection-end-line="61" selection-end-column="55" />
+                <state relative-caret-position="555">
+                  <caret line="48" column="40" lean-forward="true" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                     <element signature="e#117#136#0" expanded="true" />
@@ -89,11 +90,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/OrgsPage.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1056">
-                  <caret line="83" column="56" lean-forward="true" selection-start-line="83" selection-start-column="56" selection-end-line="83" selection-end-column="56" />
+                <state relative-caret-position="1041">
+                  <caret line="93" column="155" selection-start-line="93" selection-start-column="155" selection-end-line="93" selection-end-column="155" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                   </folding>
@@ -117,11 +118,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/CurrentOrg.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="945">
-                  <caret line="63" column="47" selection-start-line="63" selection-start-column="47" selection-end-line="63" selection-end-column="47" />
+                <state relative-caret-position="650">
+                  <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
                 </state>
               </provider>
             </entry>
@@ -135,11 +136,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/NoOrgs.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="530">
-                  <caret line="89" column="29" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="29" />
+                <state relative-caret-position="545">
+                  <caret line="77" column="40" lean-forward="true" selection-start-line="77" selection-start-column="40" selection-end-line="77" selection-end-column="40" />
                 </state>
               </provider>
             </entry>
@@ -157,17 +158,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>allUserData</find>
-      <find>getUsersOrg</find>
-      <find>console.log(</find>
-      <find>getOrgInfo</find>
-      <find>setstate</find>
-      <find>componentWillMount</find>
-      <find>logged in as</find>
-      <find>changePage('/orgs'</find>
-      <find>changePage('/orgs</find>
-      <find>orgName</find>
-      <find>changepage(</find>
       <find>changepage</find>
       <find>userData</find>
       <find>this.props.changePage('orgs'</find>
@@ -177,7 +167,6 @@
       <find>.find</find>
       <find>bind(this</find>
       <find>.map</find>
-      <find>orgData</find>
       <find>componentDidMount</find>
       <find>/viewShifts</find>
       <find>changePage('/or</find>
@@ -187,6 +176,18 @@
       <find>mapOrgs</find>
       <find>state.usersOrgName</find>
       <find>organisations</find>
+      <find>this.props</find>
+      <find>rerenderParentCallback</find>
+      <find>setstate</find>
+      <find>orgData</find>
+      <find>orgsList</find>
+      <find>leaveOrg</find>
+      <find>updateUserJoinedOrgStatus</find>
+      <find>fetchOrgsList</find>
+      <find>orgslist</find>
+      <find>joinOrg</find>
+      <find>) =&gt; this</find>
+      <find>usersOrgName</find>
     </findStrings>
     <replaceStrings>
       <replace>email</replace>
@@ -217,10 +218,10 @@
         <option value="$PROJECT_DIR$/src/components/LoginPage.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.js" />
         <option value="$PROJECT_DIR$/src/setupProxy.js" />
-        <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/components/ViewShifts.js" />
-        <option value="$PROJECT_DIR$/src/components/CurrentOrg.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/components/NoOrgs.js" />
+        <option value="$PROJECT_DIR$/src/components/CurrentOrg.js" />
         <option value="$PROJECT_DIR$/src/components/OrgsPage.js" />
       </list>
     </option>
@@ -309,12 +310,12 @@
       <workItem from="1550534927595" duration="808000" />
       <workItem from="1550895111056" duration="209000" />
       <workItem from="1550896498696" duration="11342000" />
-      <workItem from="1550977613682" duration="31771000" />
+      <workItem from="1550977613682" duration="35332000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87791000" />
+    <option name="totallyTimeSpent" value="91352000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-4" width="2560" height="1444" extended-state="6" />
@@ -457,13 +458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/CurrentOrg.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="63" column="47" selection-start-line="63" selection-start-column="47" selection-end-line="63" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/EditOrg.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -481,30 +475,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="48" column="40" lean-forward="true" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#117#136#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/NoOrgs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="89" column="29" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="29" />
+        <state relative-caret-position="545">
+          <caret line="77" column="40" lean-forward="true" selection-start-line="77" selection-start-column="40" selection-end-line="77" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/CurrentOrg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/OrgsPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="83" column="56" lean-forward="true" selection-start-line="83" selection-start-column="56" selection-end-line="83" selection-end-column="56" />
+        <state relative-caret-position="1041">
+          <caret line="93" column="155" selection-start-line="93" selection-start-column="155" selection-end-line="93" selection-end-column="155" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="61" column="55" lean-forward="true" selection-start-line="61" selection-start-column="55" selection-end-line="61" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#117#136#0" expanded="true" />
           </folding>
         </state>
       </provider>
