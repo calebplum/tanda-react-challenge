@@ -12,4 +12,7 @@ module.exports = function(app) {
     app.use(proxy('/shifts/',
         { target: 'http://localhost:3000/' }
     ));
+    app.use(proxy('/organisations/',
+        { target: 'http://localhost:3000/' }
+    ));
 };

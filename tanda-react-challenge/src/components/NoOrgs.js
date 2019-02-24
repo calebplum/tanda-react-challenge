@@ -14,7 +14,7 @@ export class NoOrgs extends Component {
         };
         this.renderEditOrgPage = this.renderEditOrgPage.bind(this);
         this.joinOrg = this.joinOrg.bind(this);
-        this.mapOrganisations = this.mapOrganisations.bind(this);
+        this.mapOrgs = this.mapOrgs.bind(this);
     }
 
     componentWillMount() {
@@ -38,22 +38,6 @@ export class NoOrgs extends Component {
         }
     }
 
-    joinOrg(orgId) {
-        const {cookies} = this.props;
-        if(cookies.get('session-id')) {
-            fetch('/organisations/join', {
-                method: 'post',
-                headers: {
-                    'Authorization': cookies.get('session-id'),
-                    'Content-Type': 'application/json'
-                }
-            }).then((res) => res.json())
-                .then((data) => {
-                    console.log(data)
-                })
-        }
-    }
-
     renderEditOrgPage(orgId, orgName, orgRate) {
         // console.log(this.props);
         // var self = this;
@@ -70,16 +54,41 @@ export class NoOrgs extends Component {
         this.props.changePage('/editOrg', editOrgData);
     }
 
-    mapOrganisations() {
+    joinOrg(orgId) {
+        console.log('joinOrg() called');
+        const {cookies} = this.props;
+        // if(cookies.get('session-id')) {
+            fetch('/organisations/join', {
+                method: 'post',
+                headers: {
+                    'Authorization': cookies.get('session-id'),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    'organisationId': orgId
+                })
+            }).then((res) => res.json())
+                .then((data) => {
+                    console.log(data)
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        // }
+    }
+
+    mapOrgs() {
         var self = this;
         // return self.state;
         console.log(self.state.organisations);
         const organisationsList = Array.from(self.state.organisations).map(function(id) {
             // return <li>{id.name} | {id.hourlyRate} <button onClick={self.renderEditOrgPage}>Edit</button></li>
-            return <li>{id.name} | {id.hourlyRate} <button onClick={() => self.renderEditOrgPage(id.id, id.name, id.hourlyRate)}>Edit</button></li>
+            return <li>{id.name} | {id.hourlyRate} <button onClick={() => self.renderEditOrgPage(id.id, id.name, id.hourlyRate)}>Edit</button>
+                <button onClick={() => self.joinOrg(id.id)}>Join</button></li>
         });
         return organisationsList;
     }
+
 
     render() {
         // console.log('organisations list');
@@ -95,7 +104,7 @@ export class NoOrgs extends Component {
                 <h1>Organisations</h1>
                 <div id="orgs-list">
                     <ul>
-                        {this.mapOrganisations()}
+                        {this.mapOrgs()}
                     </ul>
                 </div>
 
@@ -106,6 +115,7 @@ export class NoOrgs extends Component {
                     <br />
                     <label>Hourly rate: $</label>
                     <input type="text" />
+                    <br />
                     <button>Create and Join</button>
                 </div>
             </div>

@@ -103,6 +103,7 @@ export class LoginPage extends Component {
                     <input type="password" id="password" name="password" value={this.state.password}
                            onChange={(event) =>
                                this.setState({password: event.target.value})}/>
+                   <br />
                     <button id="submit" onClick={this.loginUser}>Login</button>
 
                 </div>

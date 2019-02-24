@@ -57,7 +57,7 @@ class App extends Component {
                     "/":            <LoginPage cookies={this.props.cookies} changePage={this.changePage}/>,
                     "/register":    <RegistrationPage cookies={this.props.cookies}/>,
                     "/orgs":        <OrgsPage cookies={this.props.cookies} userData={this.state.userData} changePage={this.changePage} />,
-                    "/editOrg":     <EditOrg cookies={this.props.cookies} userData={this.state.userData} editOrgData = {this.state.editOrgData} />
+                    "/editOrg":     <EditOrg cookies={this.props.cookies} userData={this.state.userData} editOrgData = {this.state.editOrgData} changePage={this.changePage}/>
                 }[this.state.currentPage]}
 
 
