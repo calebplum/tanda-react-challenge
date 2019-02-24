@@ -61,13 +61,13 @@ export class CurrentOrg extends Component {
     render() {
         return(
             <div id="page-wrap">
+                {console.log(this.props.orgData)}
                 [CurrentOrg]
                 <h1>{this.state.usersOrgName}</h1>
                 {/*{console.log(this.props.orgData)}*/}
                 {/*<button onClick={this.props.changePage('/viewShifts')}>View Shifts</button>*/}
                 <button onClick={() => this.props.changePage('/viewShifts', this.state.usersOrgName, this.state.usersOrgHourlyRate)}>View Shifts</button>
-                <br />
-                View Shifts | Edit |
+                | Edit |
                 <button onClick={() => this.props.leaveOrg()}>Leave Organisation</button>
             </div>
         )

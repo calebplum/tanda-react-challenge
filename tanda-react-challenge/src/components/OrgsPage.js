@@ -15,10 +15,12 @@ export class OrgsPage extends Component {
             pageName: "",
             userData: props.userData.userData,
             orgData: props.userData.orgData,
+            orgsList: null
             // changePage: props.changePage
         };
         this.leaveOrg = this.leaveOrg.bind(this);
         this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
+        this.fetchOrgsList = this.fetchOrgsList.bind(this);
 
     }
 
@@ -26,9 +28,29 @@ export class OrgsPage extends Component {
         this.forceUpdate();
     }
 
-    leaveOrg() {
+    fetchOrgsList() {
 
+        const {cookies} = this.props; // The cookie store
+
+        if (cookies.get('session-id')) {
+            fetch('/organisations', {
+                method: 'get',
+                headers: {
+                    'Authorization': cookies.get('session-id'),
+                    'Content-Type': 'application/json'
+                }
+            }).then((res) => res.json())
+                .then((data) => {
+                    console.log('from orgspage orgslist', data);
+                    this.setState({orgsList: data})
+                })
+        }
+
+    }
+
+    leaveOrg() {
         const { cookies } = this.props;
+
         fetch('/organisations/leave', {
             method: 'post',
             headers: {
@@ -49,6 +71,7 @@ export class OrgsPage extends Component {
     render() {
         return (
             <div id="page-wrap">
+                {this.fetchOrgsList()}
                 [OrgsPage]
                 <CheckLoggedIn cookies={this.props.cookies}/>
                 Logged in as {this.state.userData.name} <span id="logout">Logout</span>

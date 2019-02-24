@@ -43,14 +43,17 @@ export class ViewShifts extends Component {
     }
 
     appendToExistingShifts(shiftStart, shiftFinish, breakLength) {
+        console.log('from appendToExistingShifts', 'shiftFinish', shiftFinish); //debug
         const newShiftObject = {
             "id": 2,
             "userId": 2,
-            "start": "2018-01-01 10:15",
-            "finish": "2018-01-01 12:20",
-            "breakLength": null
+            "start": shiftStart,
+            "finish": shiftFinish,
+            "breakLength": breakLength
         };
-        var newArray = this.state.existingShifts.push(newShiftObject);
+        var newArray = this.state.existingShifts;
+        newArray.push(newShiftObject);
+
         this.setState({existingShifts: newArray});
     }
 
@@ -69,7 +72,14 @@ export class ViewShifts extends Component {
             if (startDateObj.getHours() <= 12) {
                 shiftStartTimeAmPm = 'AM'
             }
-            var shiftStartTimeStr = startDateObj.getHours() + ':' + startDateObj.getMinutes() + shiftStartTimeAmPm;
+            // Add a trailing zero to the minutes if necessary
+            var shiftStartMinutes = startDateObj.getMinutes();
+            if (shiftStartMinutes < 10) {
+                shiftStartMinutes += '0';
+            }
+
+            var shiftStartTimeStr = startDateObj.getHours() + ':' + shiftStartMinutes + shiftStartTimeAmPm;
+
 
             // Format the shift's end time
             var finishDateObj = new Date(shift.finish);
@@ -77,7 +87,13 @@ export class ViewShifts extends Component {
             if (finishDateObj.getHours() <= 12) {
                 shiftFinishTimeAmPm = 'AM'
             }
-            var shiftFinishTimeStr = finishDateObj.getHours() + ':' + finishDateObj.getMinutes() + shiftFinishTimeAmPm;
+            // Add a trailing zero to the minutes if necessary
+            var shiftFinishMinutes = finishDateObj.getMinutes();
+            if (shiftFinishMinutes < 10) {
+                shiftFinishMinutes += '0';
+            }
+            // Build the final timestring
+            var shiftFinishTimeStr = finishDateObj.getHours() + ':' + shiftFinishMinutes + shiftFinishTimeAmPm;
 
             // Format the shift's break if null
             var shiftBreak = shift.breakLength;
@@ -129,6 +145,13 @@ export class ViewShifts extends Component {
     createShift() {
 
         // check for blank fields, return error alert and end function early if any blank fields are found
+        if (
+            this.state.newShiftDate === '' ||
+            this.state.newShiftStartTime === '' ||
+            this.state.newShiftFinishTime === '')
+        {
+            return (window.alert('Invalid data entered'));
+        }
 
         console.log(
             'Shift Date' + this.state.newShiftDate +
@@ -145,13 +168,13 @@ export class ViewShifts extends Component {
 
         // Fetch and format the start time of the new shift (HH:MM)
         var newShiftStartTimeArray = this.state.newShiftStartTime.split(':');
-        var newShiftStartTimeMinute = newShiftStartTimeArray[0];
-        var newShiftStartTimeHour = newShiftStartTimeArray[1];
+        var newShiftStartTimeHour = newShiftStartTimeArray[0];
+        var newShiftStartTimeMinute = newShiftStartTimeArray[1];
 
         // Fetch and format the end time of the new shift (HH:MM)
         var newShiftFinishTimeArray = this.state.newShiftFinishTime.split(':');
-        var newShiftFinishTimeMinute = newShiftFinishTimeArray[0];
-        var newShiftFinishTimeHour = newShiftFinishTimeArray[1];
+        var newShiftFinishTimeHour = newShiftFinishTimeArray[0];
+        var newShiftFinishTimeMinute = newShiftFinishTimeArray[1];
 
         // Create the date object for the new shift's start date/time
         var newShiftStartDatetime = new Date(newShiftDateYear, newShiftDateMonth, newShiftDateDay, newShiftStartTimeHour, newShiftStartTimeMinute); // TODO - confirm the datetime's validity, raise alert if invalid
@@ -160,19 +183,11 @@ export class ViewShifts extends Component {
         var newShiftFinishDateTime = new Date(newShiftDateYear, newShiftDateMonth, newShiftDateDay, newShiftFinishTimeHour, newShiftFinishTimeMinute); // TODO - confirm the datetime's validity, raise alert if invalid
 
         // Subtract the break time from the shift's end-time
-        newShiftFinishDateTime = newShiftFinishDateTime - (parseInt(this.state.newShiftBreakLength) * 60000);
+        var newShiftBreakLength = 0;
         if (this.state.newShiftBreakLength !== '') {
-            var newShiftBreakLength = parseInt(this.state.newShiftBreakLength);
+            newShiftBreakLength = parseInt(this.state.newShiftBreakLength);
         }
-        else {
-            var newShiftBreakLength = 0;
-        }
-
-        // console.log(
-        //     'day: ' + newShiftDateDay +
-        //     ' month: ' + newShiftDateMonth +
-        //     ' year: ' + newShiftDateYear
-        // );
+        newShiftFinishDateTime = new Date(newShiftFinishDateTime - (newShiftBreakLength * 60000));
 
 
         const {cookies} = this.props;
@@ -190,7 +205,8 @@ export class ViewShifts extends Component {
             })
         }).then((res) => {
             // console.log(res);
-            this.appendToExistingShifts(1, 2, 3);
+            console.log('from api call: ', newShiftStartDatetime.toString(), newShiftFinishDateTime.toString())
+            this.appendToExistingShifts(newShiftStartDatetime.toString(), newShiftFinishDateTime.toString(), newShiftBreakLength);
         })
 
     }

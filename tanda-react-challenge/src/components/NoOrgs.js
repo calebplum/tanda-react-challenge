@@ -86,7 +86,8 @@ export class NoOrgs extends Component {
     mapOrgs() {
         var self = this;
         // return self.state;
-        console.log(self.state.organisations);
+        // console.log(self.state.organisations);
+        console.log('in a log', this.props.orgsList);
         const organisationsList = Array.from(self.state.organisations).map(function(id) {
             // return <li>{id.name} | {id.hourlyRate} <button onClick={self.renderEditOrgPage}>Edit</button></li>
             return <li>{id.name} | {id.hourlyRate} <button onClick={() => self.renderEditOrgPage(id.id, id.name, id.hourlyRate)}>Edit</button>
