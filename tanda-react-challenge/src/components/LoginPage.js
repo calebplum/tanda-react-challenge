@@ -48,11 +48,19 @@ export class LoginPage extends Component {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(this.state)
-            }).then((res) => res.json())
-                .then((data) => {
-                    resolve(data);
-
-                }).catch((err) => reject(err));
+            })
+                .then(function(response) {
+                if (response.status === 404) {
+                    return (window.alert('Username/password not known'))
+                }
+                resolve(response.json())
+            }).catch((err) => reject(err));
+                // .then((res) => res.json())
+                // .then((data) => {
+                //     console.log(data)
+                //     resolve(data);
+                //
+                // }).catch((err) => reject(err));
         })
     }
 
