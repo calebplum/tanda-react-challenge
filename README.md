@@ -1,3 +1,9 @@
+Tanda Adnat React front-end challenge from [Tanda](https://github.com/TandaHQ/work-samples/tree/master/adnat%20(react))
+
 Instructions:
-1. Navigate to the backend server and start it with 'npm start'
-2. Navigate to the frontend server and start it with 'npm start'
+1. Navigate to the backend server in ./backend and run:
+-- $ npm install
+-- $ npm start
+2. Navigate to the frontend server in ./tanda-react-challenge and run:
+-- $ npm install
+-- $ npm start
